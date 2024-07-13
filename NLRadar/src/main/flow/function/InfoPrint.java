@@ -1,42 +1,29 @@
 package function;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import soot.Body;
 import soot.Scene;
 import soot.SceneTransformer;
 import soot.SootClass;
 import soot.SootMethod;
-import soot.Body;
-import soot.Local;
-import soot.PackManager;
-import soot.SootMethodRef;
 import soot.Unit;
-import soot.jimple.InvokeExpr;
-import soot.jimple.InvokeStmt;
-import soot.jimple.SpecialInvokeExpr;
 import soot.jimple.Stmt;
-import soot.jimple.VirtualInvokeExpr;
-import soot.jimple.spark.SparkTransformer;
-import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Edge;
 import soot.util.Chain;
-
-import java.util.Map;
-import java.util.Iterator;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
-
-
 import utils.LoggerUtil;
 
 
 public class InfoPrint extends SceneTransformer{
-    //change your dir
     private LoggerUtil mylogger = new LoggerUtil();
-    String cgfilepath = "/Output/cg.txt";
-    String jimplefilepath = "/Output/jimple.txt";
-    String broadcastrecord = "/Output/broadcastrecord.txt";
+    String cgfilepath = "Output/cg.txt";
+    String jimplefilepath = "Output/jimple.txt";
+    String broadcastrecord = "Output/broadcastrecord2.txt";
 
     public static void writeToFile(String filepath,String content){
         try{
@@ -55,23 +42,24 @@ public class InfoPrint extends SceneTransformer{
     @Override
     protected void internalTransform(String phaseName, Map<String, String> options) {
         for(SootClass sootClass : Scene.v().getClasses()){
+            
             for(SootMethod sootMethod : sootClass.getMethods()){
                 Boolean flag = false;
                 try{
                     if(sootMethod.isConcrete()){
                         Body body = sootMethod.retrieveActiveBody();
-
+                        
                         writeToFile(jimplefilepath, "Method: " + sootMethod.getSignature()+"\n");
                         Chain<Unit> units = body.getUnits();
                         for(Iterator<Unit> iter = units.snapshotIterator();iter.hasNext();){
                             Unit unit = iter.next();
                             if(unit instanceof Stmt){
                                 Stmt stmt = (Stmt) unit;
-                                //System.out.println(stmt);
                                 writeToFile(jimplefilepath, stmt.toString()+"\n");
                             }
                         }
                     }
+                    
                 }catch (Exception e) {
                     mylogger.logError(e.toString());
                     e.printStackTrace();
@@ -107,7 +95,7 @@ public class InfoPrint extends SceneTransformer{
                 writeToFile(cgfilepath, "Call from "+edge.getSrc().method().getSignature()+" to "+edge.getTgt().method().getSignature()+"\n");
             }catch (Exception e) {
                 System.out.println("edge.getSrc().method() is null");
-                e.printStackTrace();
+                // e.printStackTrace();
             }
             
         }

@@ -1,27 +1,19 @@
 package init;
 
 
-import java.util.Collections;
-import java.util.logging.Level;
-
+import dataStructure.GlobalValue;
 import soot.G;
 import soot.Scene;
-import soot.SootClass;
 import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
 import soot.jimple.infoflow.android.SetupApplication;
-import soot.jimple.infoflow.methodSummary.data.provider.LazySummaryProvider;
-import soot.jimple.infoflow.methodSummary.taintWrappers.SummaryTaintWrapper;
-import soot.jimple.infoflow.taintWrappers.ITaintPropagationWrapper;
 import soot.options.Options;
-
-import dataStructure.GlobalValue;
 
 public class Flowdroidinit {
     public static SetupApplication init(String apk,String jarPath,String apkname){
         G.reset();
         InfoflowAndroidConfiguration config = new InfoflowAndroidConfiguration();
         config.getAnalysisFileConfig().setAndroidPlatformDir(jarPath);//android jar
-        config.getAnalysisFileConfig().setTargetAPKFile(apk);//apk
+        config.getAnalysisFileConfig().setTargetAPKFile(apk);
         config.getAnalysisFileConfig().setSourceSinkFile("SourcesAndSinksNotification.txt");
         config.setLogSourcesAndSinks(true);
         config.setDataFlowTimeout(300);
@@ -29,7 +21,6 @@ public class Flowdroidinit {
         config.getPathConfiguration().setPathReconstructionTimeout(300);
         config.getAnalysisFileConfig().setOutputFile(GlobalValue.SOOT_OUTPUT_PATH+"/"+apkname.substring(0,apkname.length()-4)+".xml");
         config.getCallbackConfig().setEnableCallbacks(true);
-       
         
         Options.v().set_prepend_classpath(true);
         Options.v().set_allow_phantom_refs(true);
@@ -44,8 +35,6 @@ public class Flowdroidinit {
 		Options.v().ignore_resolution_errors();
         Options.v().set_keep_line_number(true);
         Options.v().set_keep_offset(true);
-
-
 
         Scene.v().addBasicClass("android.app.Service,HIERARCHY");
         

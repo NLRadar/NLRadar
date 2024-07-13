@@ -1,43 +1,28 @@
 package dataStructure;
 
+import java.util.ArrayList;
+
 import soot.SootClass;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.util.Chain;
 
-import java.util.ArrayList;
-
-import javax.sound.midi.Soundbank;
-
-import org.checkerframework.checker.units.qual.A;
-
-//change directory
 public class GlobalValue {
     // android jar path
-    public static String JAR_Path ="/android/sdk/platforms";
+    public static String JAR_Path ="D:\\workdir\\android\\platforms";
     // logger path
-    public static String OUT_Path = "/Output/";
-    // apk path
-    public static String APK_PATH = "/apk/";
-    
+    public static String OUT_Path = "Output";
+   // apk path
+    public static String APK_PATH = "testapk/";
+    //ICCBotOutputPath
+    public static String ICCBOT_OUTPUT_PATH = "Output/ICCBotOutput";
+
     public static CallGraph callgraph;
-    //记录class信息
+
     public static Chain<SootClass> sootClass;
-    //重新修改打包后的apk目录
-    public static String APK_REPACKAGE_PATH = "/apkrepackaged";
-    //soot的输出文件目录
-    public static String SOOT_OUTPUT_PATH = "/sootOutput";
 
-    public static String behavior_Path = "/Output/behavior/";
-
-    public static String cg_Path = "/Output/cg/";
-
-    public static String error_Path = "/Output/error/";
-
-    public static String finding_Path = "/Output/finding/";
-
-    public static String jimple_Path = "/Output/jimple/";
-
-    public static String compare_Path = "/Output/compare/";
+    public static String APK_REPACKAGE_PATH = "apkrepackaged";
+ 
+    public static String SOOT_OUTPUT_PATH = "sootOutput";
 
     public static ArrayList<String> SourMethods = new ArrayList<String>(){
         {
@@ -45,10 +30,27 @@ public class GlobalValue {
             add("<android.service.notification.NotificationListenerService: void onNotificationRemoved(android.service.notification.StatusBarNotification)>");
             add("onNotificationPosted");
             add("onNotificationRemoved");
-            add("<android.service.notification.StatusBarNotification: android.app.Notification getNotification()>");
+            //add("<android.service.notification.StatusBarNotification: android.app.Notification getNotification()>");
+            //add("getNotification");
+            //add("<android.app.NotificationManager: android.service.notification.StatusBarNotification[] getActiveNotifications()>");
+            //add("getActiveNotifications");
             add("<android.service.notification.NotificationListenerService: android.service.notification.StatusBarNotification[] getActiveNotifications()>");
         }
     };
+
+    public static ArrayList<String> ICCmethods = new ArrayList<String>(){
+        {
+            add("sendBroadcast");
+            add("sendBroadcastAsUser");
+            add("sendOrderedBroadcast");
+            add("startActivity");
+            add("startService");
+            add("bindService");
+            add("startForegroundService");
+            add("startActivityForResult");
+        }
+    };
+
     public static ArrayList<String> SinkMethods = new ArrayList<String>(){
         {
             //network
@@ -59,19 +61,14 @@ public class GlobalValue {
             add("<java.net.URLConnection: void <init>(java.net.URL)>");
             add("<java.net.URLConnection: void setRequestProperty(java.lang.String,java.lang.String)>");
             add("<java.net.URLConnection: void addRequestProperty(java.lang.String,java.lang.String)>");
-            //getOutputStream
-            add("<java.net.URLConnection: java.io.OutputStream getOutputStream()>");
             
             add("<java.net.HttpURLConnection: void <init>(java.net.URL)>");
             add("<java.net.HttpURLConnection: void setRequestProperty(java.lang.String,java.lang.String)>");
             add("<java.net.HttpURLConnection: void addRequestProperty(java.lang.String,java.lang.String)>");
             
-            
             add("<java.net.HttpsURLConnection: void <init>(java.net.URL)>");
             add("<java.net.HttpsURLConnection: void setRequestProperty(java.lang.String,java.lang.String)>");
             add("<java.net.HttpsURLConnection: void addRequestProperty(java.lang.String,java.lang.String)>");
-            //getOutputStream
-            add("<java.net.HttpsURLConnection: java.io.OutputStream getOutputStream()>");
             
             add("<org.apache.http.client.methods.HttpPost: void <init>(java.net.URI)>");	
             add("<org.apache.http.client.methods.HttpPost: void <init>(java.lang.String)>");	
@@ -94,7 +91,7 @@ public class GlobalValue {
             add("<com.android.volley.RequestQueue: com.android.volley.RequestQueue add(com.android.volley.Request)>");
             add("<com.android.volley.RequestQueue: com.android.volley.RequestQueue add(com.android.volley.Request,java.lang.Object)>");
 
-            //socket
+            //socket 
             add("<java.net.Socket: java.io.OutputStream getOutputStream()>");
 
             
@@ -171,6 +168,11 @@ public class GlobalValue {
             add("<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String)>");
             add("<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String,java.lang.Object[])>");
             add("<android.database.sqlite.SQLiteDatabase: void execSQL(java.lang.String,android.database.sqlite.SQLiteDatabase$CursorFactory)>");
+            //query
+            // add("<android.database.sqlite.SQLiteDatabase: android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,java.lang.String,java.lang.String)>");
+
+            // add("<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)> ");
+            // add("<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,android.os.CancellationSignal)>");
             add("<org.owasp.webgoat.session.DatabaseUtilities: java.sql.Connection getHsqldbConnection(java.lang.String,org.owasp.webgoat.session.WebgoatContext)>");
 
             //com.google.firebase.database.DatabaseReference
@@ -178,6 +180,8 @@ public class GlobalValue {
             add("<com.google.firebase.database.DatabaseReference: com.google.android.gms.tasks.Task updateChildren(java.util.Map)>");
 
 
+
+            //行为分析
             //cancelNotification
             add("<android.service.notification.NotificationListenerService: void cancelNotification(java.lang.String, java.lang.String, int)>");
             add("<android.service.notification.NotificationListenerService: void cancelNotification(java.lang.String)>");
@@ -199,15 +203,6 @@ public class GlobalValue {
             add("<android.app.PendingIntent: void send(android.content.Context,int,android.content.Intent,android.app.PendingIntent$OnFinished,android.os.Handler)>");
             add("<android.app.PendingIntent: void send(android.content.Context,int,android.content.Intent,android.app.PendingIntent$OnFinished,android.os.Handler,java.lang.String)>");
             add("android.app.PendingIntent: void send(");
-            //remoteInput addReusltstoIntent
-            add("<android.app.RemoteInput: void addResultsToIntent(android.app.RemoteInput$RemoteInput[],android.content.Intent,android.os.Bundle)>");
-            //RemoteInput.Builder
-            add("<android.app.RemoteInput$Builder: android.app.RemoteInput build()>");
-            add("<android.app.RemoteInput$Builder: android.app.RemoteInput$Builder setAllowFreeFormInput(boolean)>");
-
-            //Notification.Action.Builder
-            add("<android.app.Notification$Action$Builder: android.app.Notification$Action$Builder addRemoteInput(android.app.RemoteInput)>");
-            
 
             //remoteInput addReusltstoIntent
             add("<android.app.RemoteInput: void addResultsToIntent(android.app.RemoteInput$RemoteInput[],android.content.Intent,android.os.Bundle)>");
@@ -459,7 +454,6 @@ public class GlobalValue {
             add("<java.io.FileInputStream: int read(byte[],int,int)>");
         }
     };
-  
 
     public ArrayList<String> getSourMethods() {
         return SourMethods;

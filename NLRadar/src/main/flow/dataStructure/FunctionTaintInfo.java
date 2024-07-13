@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import soot.jimple.Stmt;
+import soot.Unit;
 
 public class FunctionTaintInfo {
     private SootMethod method;
@@ -95,6 +96,10 @@ public class FunctionTaintInfo {
 
     public Stmt getStmt() {
         return stmt;
+    }
+
+    public Unit getUnit() {
+        return (Unit)stmt;
     }
 
     public void addTaintedLocal(Local local) {

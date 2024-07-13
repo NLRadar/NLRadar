@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <component name="com.example.notificationtest.MainActivity" type="Activity" exported="true">
+    <manifest>
+      <intent_filter action="android.intent.action.MAIN" category="android.intent.category.LAUNCHER"/>
+    </manifest>
+    <sender destination="interICC_android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS, , interICC_android.settings.CHANNEL_NOTIFICATION_SETTINGS, " action="android.settings.CHANNEL_NOTIFICATION_SETTINGS, android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS" extras="String-android.provider.extra.APP_PACKAGE,String-android.provider.extra.CHANNEL_ID"/>
+  </component>
+  <component name="com.example.notificationtest.MyBroadcastReceiver" type="Receiver">
+    <manifest>
+      <intent_filter action="NOTIFICATION_SENDBROADCAST"/>
+    </manifest>
+    <receive extras="String-Text,String-package"/>
+  </component>
+  <component name="com.example.notificationtest.MyNotification" type="Service" exported="true" permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+    <manifest>
+      <intent_filter action="android.service.notification.NotificationListenerService"/>
+    </manifest>
+    <sender destination="com.example.notificationtest.MyBroadcastReceiver" action="NOTIFICATION_SENDBROADCAST" extras="String-Tile,String-package,String-Text"/>
+    <receive extras="String-package,String-Text"/>
+  </component>
+</root>

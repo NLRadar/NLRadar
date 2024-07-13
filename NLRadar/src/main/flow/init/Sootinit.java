@@ -1,12 +1,12 @@
 package init;
 
-import soot.G;
-import soot.Scene;
-import soot.options.Options;
-
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import soot.G;
+import soot.Scene;
+import soot.options.Options;
 
 public class Sootinit {
     private static Logger logger = Logger.getLogger("cc");
@@ -27,7 +27,6 @@ public class Sootinit {
         Options.v().set_process_dir(Collections.singletonList(args));
         Options.v().set_force_overwrite(true);
         Options.v().set_whole_program(true);
- 
         try{
             Scene.v().loadNecessaryClasses();
         }catch (Exception e) {

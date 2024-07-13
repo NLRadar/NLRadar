@@ -1,0 +1,6 @@
+
+com.example.notificationtest.MainActivity -> interICC_android.settings.CHANNEL_NOTIFICATION_SETTINGS, 
+com.example.notificationtest.MainActivity -> interICC_android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS, 
+
+com.example.notificationtest.MyNotification -> com.example.notificationtest.MyBroadcastReceiver
+

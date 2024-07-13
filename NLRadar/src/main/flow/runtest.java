@@ -1,38 +1,31 @@
-import dataStructure.GlobalValue;
-import static utils.util.*;
-import function.InfoPrint;
-import function.broadcastconnect;
-import utils.LoggerUtil;
-import static graph.cganalysis.constructflow;
-
-import soot.Scene;
-import soot.SootMethod;
-import soot.Transform;
-import soot.PackManager;
-import soot.options.Options;
-
-import init.Flowdroidinit;
-import soot.jimple.infoflow.results.InfoflowResults;
-import soot.jimple.infoflow.taintWrappers.ITaintPropagationWrapper;
-import soot.jimple.toolkits.callgraph.CallGraph;
-import soot.jimple.infoflow.android.SetupApplication;
-import soot.jimple.infoflow.methodSummary.data.provider.LazySummaryProvider;
-import soot.jimple.infoflow.methodSummary.taintWrappers.SummaryTaintWrapper;
-import soot.jimple.infoflow.taintWrappers.ITaintPropagationWrapper;
-import soot.jimple.infoflow.android.InfoflowAndroidConfiguration;
-
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.io.*;
-import java.nio.file.Paths;
-import java.nio.file.FileAlreadyExistsException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
+import dataStructure.GlobalValue;
+import function.InfoPrint;
+import static graph.cganalysis.constructflow;
+import init.Flowdroidinit;
+import soot.PackManager;
+import soot.Scene;
+import soot.Transform;
+import soot.jimple.infoflow.android.SetupApplication;
+import soot.jimple.infoflow.methodSummary.data.provider.LazySummaryProvider;
+import soot.jimple.infoflow.methodSummary.taintWrappers.SummaryTaintWrapper;
+import soot.jimple.infoflow.results.InfoflowResults;
+import soot.jimple.infoflow.taintWrappers.ITaintPropagationWrapper;
+import utils.LoggerUtil;
+import utils.ReadICCBot;
+import static utils.util.getapk;
 
 public class runtest {
     private static LoggerUtil mylogger = new LoggerUtil();
@@ -53,30 +46,12 @@ public class runtest {
         
         infoPrint.cgprint();
         PackManager.v().getPack("wjtp").add(new Transform("wjtp.MethodFeatureTransformer", infoPrint));
-        // broadcastconnect broadcastconnect = new broadcastconnect();
-        // PackManager.v().getPack("jtp").add(new Transform("jtp.broadcastconnect", broadcastconnect));
         try{
             PackManager.v().runPacks();
         }catch (Exception e) {
             mylogger.logError(outPath+" "+e.toString());
             e.printStackTrace();
         }
-
-        // String repackagedPath = "apkrepackaged"+"/"+apkname;
-        // Path path = Paths.get(repackagedPath);
-        // if(Files.exists(path)){
-        //     try{
-        //         Files.delete(path);
-        //         System.out.println("delete success");
-        //     }catch (Exception e) {
-        //         mylogger.logError(outPath+" "+e.toString());
-        //         e.printStackTrace();
-        //     }
-        // }
-
-        // Options.v().set_output_dir("apkrepackaged");
-        // Options.v().set_output_format(Options.output_format_dex);
-        // PackManager.v().writeOutput();
 
     }
 
@@ -86,7 +61,7 @@ public class runtest {
         String apkPath = globalValue.APK_REPACKAGE_PATH;
         String jarPath = globalValue.JAR_Path;
         String outPath = globalValue.SOOT_OUTPUT_PATH;
-        String apk = "testapk/"+"/"+apkname;
+        String apk = apkPath+"/"+apkname;
         SetupApplication app = Flowdroidinit.init(apk,jarPath,apkname);
         try{
             ITaintPropagationWrapper taintWrapper = new SummaryTaintWrapper(new LazySummaryProvider("summariesManual"));
@@ -99,15 +74,15 @@ public class runtest {
         }catch (Exception e) {
             mylogger.logError(outPath+" "+e.toString());
             e.printStackTrace();
-        } 
+        }
         
     }
 
-    public static void beginCgAnalysis(String fatherpath , String apkname){
+    public static void beginCgAnalysis(String apkname){
         String apkPath = GlobalValue.APK_PATH;
         String jarPath = GlobalValue.JAR_Path;
         String outPath = GlobalValue.OUT_Path;
-        String apk = fatherpath+apkname;
+        String apk = apkPath+"/"+apkname;
         SetupApplication app = Flowdroidinit.init(apk,jarPath,apkname);
         app.getConfig().setMergeDexFiles(true);
         
@@ -118,9 +93,8 @@ public class runtest {
             GlobalValue.sootClass = Scene.v().getClasses();
             constructflow(apkname);
         });
-         try {
-            // time limited
-            future.get(10, TimeUnit.MINUTES);
+        try {
+            future.get(15 , TimeUnit.MINUTES);
         } catch (TimeoutException e) {
             infoPrint.writeToFile("Output/error/"+apkname,"runtimeerror"+"\n");
             infoPrint.writeToFile("Output/error/"+apkname,e.toString()+"\n");
@@ -128,38 +102,45 @@ public class runtest {
             System.exit(1);
         } catch (Exception e) {
             e.printStackTrace();
+            infoPrint.writeToFile("Output/error/"+apkname,"runtimeerror"+"\n");
             infoPrint.writeToFile("Output/error/"+apkname,e.toString()+"\n");
+            // System.exit(1);
         } finally {
             infoPrint.writeToFile("Output/error/"+apkname,"runtimeerror"+"\n");
             executor.shutdown();
+            // System.exit(1);
         }
         System.out.println("cganalysis done");
         return;
     }
 
     public static void main(String[] args) {
-        String testapk = args[0];
-        String androidjar = args[1];
-        GlobalValue.JAR_Path = androidjar;
-        File testfile = new File(testapk);
-        String filename = testfile.getName();
-        String fatherpath = testfile.getParent()+"/";
-        File destFile = new File(testapk+"_done");
-
-        try{
-            Files.move(testfile.toPath(), destFile.toPath());
-        } catch (FileAlreadyExistsException e) {
-            System.out.println("target file already exists");
-        } catch (IOException e) {
-            System.out.println("I/O error：" + e.getMessage());
+        Vector<String> app_name_vec = new Vector<String>();
+        app_name_vec = getapk(GlobalValue.APK_PATH);
+        ReadICCBot readICCBot = new ReadICCBot();
+        for(int i=0;i<app_name_vec.size();i++){
+            String apk = GlobalValue.APK_PATH+"/"+app_name_vec.get(i);
+            File srcFile = new File(apk);
+            File destFile = new File(apk+"_done");
+            try{
+                Files.move(srcFile.toPath(), destFile.toPath());
+            } catch (FileAlreadyExistsException e) {
+                System.out.println("Target file already exists: " + e.getMessage());
+            } catch (IOException e) {
+                System.out.println("IOException: " + e.getMessage());
+            }
+            // repackage(app_name_vec.get(i)+"_done");
+            // analysis(app_name_vec.get(i));
+            try{
+                beginCgAnalysis(app_name_vec.get(i)+"_done");
+            } catch (Exception e) {
+                infoPrint.writeToFile("Output/error/"+app_name_vec.get(i),e.toString()+"\n");
+                e.printStackTrace();
+            }
+            
         }
-
-        try{
-            beginCgAnalysis(fatherpath,filename+"_done");
-        } catch (Exception e) {
-            infoPrint.writeToFile(GlobalValue.error_Path+filename,e.toString()+"\n");
-            e.printStackTrace();
-        }
+        System.exit(0);
+        return;
     }
     
 }

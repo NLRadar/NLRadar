@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentStore access$200(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r0 := @parameter0: androidx.fragment.app.FragmentManager"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.SpecialEffectsControllerFactory getSpecialEffectsControllerFactory()&gt;">
+    <node type="StaticCreateMethod" unit="r0 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void noteStateNotSaved()&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = $r1.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.SpecialEffectsController: androidx.fragment.app.SpecialEffectsController getOrCreateController(android.view.ViewGroup,androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter1: androidx.fragment.app.FragmentManager"/>
+    <node unit="$r2 = virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.SpecialEffectsControllerFactory getSpecialEffectsControllerFactory()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: int computeExpectedState()&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = $r1.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r1.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node unit="$r8 = staticinvoke &lt;androidx.fragment.app.SpecialEffectsController: androidx.fragment.app.SpecialEffectsController getOrCreateController(android.view.ViewGroup,androidx.fragment.app.FragmentManager)&gt;($r7, $r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPreAttached(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentPreAttached(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.content.Context)&gt;($r2, $r1, $r4)"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r5.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r6.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPreAttached(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentPreAttached(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.content.Context)&gt;($r2, $r1, $r4)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$8: void &lt;init&gt;(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$8: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: boolean isPrimaryNavigation(androidx.fragment.app.Fragment)&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="$z0 = virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: boolean equals(java.lang.Object)&gt;($r3)"/>
+    <node type="PassOut" unit="$z0 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: boolean isPrimaryNavigation(androidx.fragment.app.Fragment)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void updateOnBackPressedCallbackEnabled()&gt;">
+    <node type="PassOut" unit="$z0 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: boolean isPrimaryNavigation(androidx.fragment.app.Fragment)&gt;($r4)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStore: void setNonConfig(androidx.fragment.app.FragmentManagerViewModel)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManagerViewModel"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$9: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$9: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$9: void onActivityResult(androidx.activity.result.ActivityResult)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$9: androidx.fragment.app.FragmentManager this$0&gt;"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$9: androidx.fragment.app.FragmentManager this$0&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$9: void onActivityResult(java.lang.Object)&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager$9: void onActivityResult(androidx.activity.result.ActivityResult)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$10: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$10: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$10: void onActivityResult(androidx.activity.result.ActivityResult)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$10: androidx.fragment.app.FragmentManager this$0&gt;"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$10: androidx.fragment.app.FragmentManager this$0&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$10: void onActivityResult(java.lang.Object)&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager$10: void onActivityResult(androidx.activity.result.ActivityResult)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$11: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$11: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$11: void onActivityResult(java.util.Map)&gt;">
+    <node type="StaticCreateMethod" unit="$r10 = r0.&lt;androidx.fragment.app.FragmentManager$11: androidx.fragment.app.FragmentManager this$0&gt;"/>
+    <node type="StaticCreateMethod" unit="$r10 = r0.&lt;androidx.fragment.app.FragmentManager$11: androidx.fragment.app.FragmentManager this$0&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$11: void onActivityResult(java.lang.Object)&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager$11: void onActivityResult(java.util.Map)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void attachController(androidx.fragment.app.FragmentHostCallback,androidx.fragment.app.FragmentContainer,androidx.fragment.app.Fragment)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void updateOnBackPressedCallbackEnabled()&gt;()"/>
+    <node type="StaticCreateMethod" unit="$r10 = $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="$r11 = specialinvoke $r10.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentManagerViewModel getChildNonConfig(androidx.fragment.app.Fragment)&gt;($r3)"/>
+    <node unit="specialinvoke $r25.&lt;androidx.fragment.app.FragmentManager$9: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r24, $r25)"/>
+    <node unit="specialinvoke $r27.&lt;androidx.fragment.app.FragmentManager$10: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r26, $r27)"/>
+    <node unit="specialinvoke $r29.&lt;androidx.fragment.app.FragmentManager$11: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r18, $r28, $r29)"/>
+    <node type="StaticCreateMethod" unit="$r10 = $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="$r11 = specialinvoke $r10.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentManagerViewModel getChildNonConfig(androidx.fragment.app.Fragment)&gt;($r3)"/>
+    <node type="PassOut" unit="specialinvoke $r21.&lt;androidx.fragment.app.FragmentManager$8: void &lt;init&gt;(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;(r0, $r3)"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void updateOnBackPressedCallbackEnabled()&gt;()"/>
+    <node unit="specialinvoke $r25.&lt;androidx.fragment.app.FragmentManager$9: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r24, $r25)"/>
+    <node unit="specialinvoke $r27.&lt;androidx.fragment.app.FragmentManager$10: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r26, $r27)"/>
+    <node unit="specialinvoke $r29.&lt;androidx.fragment.app.FragmentManager$11: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r18, $r28, $r29)"/>
+    <node unit="specialinvoke $r25.&lt;androidx.fragment.app.FragmentManager$9: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r24, $r25)"/>
+    <node unit="specialinvoke $r27.&lt;androidx.fragment.app.FragmentManager$10: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r26, $r27)"/>
+    <node unit="specialinvoke $r29.&lt;androidx.fragment.app.FragmentManager$11: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r18, $r28, $r29)"/>
+    <node unit="specialinvoke $r25.&lt;androidx.fragment.app.FragmentManager$9: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r24, $r25)"/>
+    <node unit="specialinvoke $r27.&lt;androidx.fragment.app.FragmentManager$10: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r19, $r26, $r27)"/>
+    <node unit="specialinvoke $r29.&lt;androidx.fragment.app.FragmentManager$11: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="$r20 = virtualinvoke $r16.&lt;androidx.activity.result.ActivityResultRegistry: androidx.activity.result.ActivityResultLauncher register(java.lang.String,androidx.activity.result.contract.ActivityResultContract,androidx.activity.result.ActivityResultCallback)&gt;($r18, $r28, $r29)"/>
+    <node type="StaticCreateMethod" unit="$r10 = $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="$r11 = specialinvoke $r10.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentManagerViewModel getChildNonConfig(androidx.fragment.app.Fragment)&gt;($r3)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performAttach()&gt;">
+    <node type="StaticCreateMethod" unit="$r5 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentManager: void attachController(androidx.fragment.app.FragmentHostCallback,androidx.fragment.app.FragmentContainer,androidx.fragment.app.Fragment)&gt;($r6, $r7, r0)"/>
+    <node type="StaticCreateMethod" unit="$r5 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentManager: void dispatchOnAttachFragment(androidx.fragment.app.Fragment)&gt;(r0)"/>
+    <node type="StaticCreateMethod" unit="$r5 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentAttached(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentAttached(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.content.Context)&gt;($r2, $r1, $r4)"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r5.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r6.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentAttached(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentAttached(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.content.Context)&gt;($r2, $r1, $r4)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void attach()&gt;">
+    <node type="StaticCreateMethod" unit="$r9 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r9 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPreAttached(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performAttach()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentAttached(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPreCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r4.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPreCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;($r1, $r2, 1)"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentPreCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.os.Bundle)&gt;($r3, $r1, $r2)"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentPreCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.os.Bundle)&gt;($r3, $r1, $r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentFactory getFragmentFactory()&gt;">
+    <node type="StaticCreateMethod" unit="r0 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchPrimaryNavigationFragmentChanged()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void updateOnBackPressedCallbackEnabled()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performPrimaryNavigationFragmentChanged()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="$z0 = virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: boolean isPrimaryNavigation(androidx.fragment.app.Fragment)&gt;(r0)"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: void dispatchPrimaryNavigationFragmentChanged()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchParentPrimaryNavigationFragmentChanged(androidx.fragment.app.Fragment)&gt;">
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.Fragment: void performPrimaryNavigationFragmentChanged()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void restoreSaveState(android.os.Parcelable)&gt;">
+    <node type="StaticCreateMethod" unit="$r10.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt; = r0"/>
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchParentPrimaryNavigationFragmentChanged(androidx.fragment.app.Fragment)&gt;($r10)"/>
+    <node type="StaticCreateMethod" unit="$r10.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt; = r0"/>
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchParentPrimaryNavigationFragmentChanged(androidx.fragment.app.Fragment)&gt;($r10)"/>
+    <node type="StaticCreateMethod" unit="$r10.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt; = r0"/>
+    <node unit="$r18 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentFactory getFragmentFactory()&gt;()"/>
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchParentPrimaryNavigationFragmentChanged(androidx.fragment.app.Fragment)&gt;($r10)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void restoreChildFragmentState(android.os.Bundle)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentManager: void restoreSaveState(android.os.Parcelable)&gt;($r1)"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void onCreate(android.os.Bundle)&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.Fragment: void restoreChildFragmentState(android.os.Bundle)&gt;($r1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performCreate(android.os.Bundle)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.Fragment: void onCreate(android.os.Bundle)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.os.Bundle)&gt;($r3, $r1, $r2)"/>
+    <node type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r4.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;($r1, $r2, 1)"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.os.Bundle)&gt;($r3, $r1, $r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void create()&gt;">
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPreCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;($r2, $r5, 0)"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performCreate(android.os.Bundle)&gt;($r5)"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;($r2, $r5, 0)"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void restoreChildFragmentState(android.os.Bundle)&gt;($r5)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater getLayoutInflater(android.os.Bundle)&gt;">
+    <node type="StaticCreateMethod" unit="$r4 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle)&gt;">
+    <node unit="$r1 = virtualinvoke r0.&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater getLayoutInflater(android.os.Bundle)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater performGetLayoutInflater(android.os.Bundle)&gt;">
+    <node unit="$r1 = virtualinvoke r0.&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater onGetLayoutInflater(android.os.Bundle)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: androidx.lifecycle.ViewModelStore getViewModelStore()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="$r3 = virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: androidx.lifecycle.ViewModelStore getViewModelStore(androidx.fragment.app.Fragment)&gt;(r0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)&gt;">
+    <node type="StaticCreateMethod" unit="$r4 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="$r6 = virtualinvoke r0.&lt;androidx.fragment.app.Fragment: androidx.lifecycle.ViewModelStore getViewModelStore()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performViewCreated()&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewCreated(androidx.fragment.app.Fragment,android.view.View,android.os.Bundle,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r4 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r4 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentViewCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.view.View,android.os.Bundle)&gt;($r4, $r1, $r2, $r3)"/>
+    <node type="ReceiveFromRetValue" unit="$r4 = virtualinvoke $r5.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r6.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewCreated(androidx.fragment.app.Fragment,android.view.View,android.os.Bundle,boolean)&gt;($r1, $r2, $r3, 1)"/>
+    <node type="StaticCreateMethod" unit="$r4 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r11.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentViewCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.view.View,android.os.Bundle)&gt;($r4, $r1, $r2, $r3)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void ensureInflatedView()&gt;">
+    <node unit="$r5 = virtualinvoke $r1.&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater performGetLayoutInflater(android.os.Bundle)&gt;($r4)"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.Fragment: void performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)&gt;($r5, null, $r4)"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.Fragment: void performViewCreated()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r8.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewCreated(androidx.fragment.app.Fragment,android.view.View,android.os.Bundle,boolean)&gt;($r1, $r7, $r4, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performActivityCreated(android.os.Bundle)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentActivityCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r4.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentActivityCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;($r1, $r2, 1)"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentActivityCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.os.Bundle)&gt;($r3, $r1, $r2)"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentActivityCreated(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment,android.os.Bundle)&gt;($r3, $r1, $r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;">
+    <node unit="virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: void performActivityCreated(android.os.Bundle)&gt;($r1)"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentActivityCreated(androidx.fragment.app.Fragment,android.os.Bundle,boolean)&gt;($r3, $r1, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performStart()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentStarted(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentStarted(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentStarted(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentStarted(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performStart()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentStarted(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performResume()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentResumed(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentResumed(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentResumed(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentResumed(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performResume()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentResumed(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;">
+    <node unit="$r6 = virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: android.view.LayoutInflater performGetLayoutInflater(android.os.Bundle)&gt;($r5)"/>
+    <node type="StaticCreateMethod" unit="$r8 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)&gt;($r6, $r7, $r5)"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performViewCreated()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r13.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewCreated(androidx.fragment.app.Fragment,android.view.View,android.os.Bundle,boolean)&gt;($r2, $r10, $r5, 0)"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)&gt;($r6, $r7, $r5)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: java.util.Set collectAllSpecialEffectsController()&gt;">
+    <node unit="$r9 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.SpecialEffectsControllerFactory getSpecialEffectsControllerFactory()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void endAnimatingAwayFragments()&gt;">
+    <node unit="$r1 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: java.util.Set collectAllSpecialEffectsController()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchDestroy()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void endAnimatingAwayFragments()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLayoutInflaterFactory: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentLayoutInflaterFactory: androidx.fragment.app.FragmentManager mFragmentManager&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$1: void &lt;init&gt;(androidx.fragment.app.FragmentManager,boolean)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$1: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$2: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$2: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$3: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$3: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$4: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$4: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$5: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$5: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void &lt;init&gt;()&gt;">
+    <node unit="specialinvoke $r4.&lt;androidx.fragment.app.FragmentLayoutInflaterFactory: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="specialinvoke $r5.&lt;androidx.fragment.app.FragmentManager$1: void &lt;init&gt;(androidx.fragment.app.FragmentManager,boolean)&gt;(r0, 0)"/>
+    <node unit="specialinvoke $r8.&lt;androidx.fragment.app.FragmentManager$2: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="specialinvoke $r9.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="specialinvoke $r11.&lt;androidx.fragment.app.FragmentManager$3: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="specialinvoke $r12.&lt;androidx.fragment.app.FragmentManager$4: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+    <node unit="specialinvoke $r14.&lt;androidx.fragment.app.FragmentManager$5: void &lt;init&gt;(androidx.fragment.app.FragmentManager)&gt;(r0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManagerImpl: void &lt;init&gt;()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void &lt;init&gt;()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performDetach()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: void dispatchDestroy()&gt;()"/>
+    <node unit="specialinvoke $r4.&lt;androidx.fragment.app.FragmentManagerImpl: void &lt;init&gt;()&gt;()"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt; = $r4"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentDetached(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentDetached(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentDetached(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentDetached(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void initState()&gt;">
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt; = null"/>
+    <node unit="specialinvoke $r1.&lt;androidx.fragment.app.FragmentManagerImpl: void &lt;init&gt;()&gt;()"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void detach()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performDetach()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentDetached(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+    <node type="StaticCreateMethod" unit="$r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt; = null"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void initState()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performDestroy()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: void dispatchDestroy()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentDestroyed(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentDestroyed(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentDestroyed(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentDestroyed(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void destroy()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performDestroy()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentDestroyed(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewDestroyed(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentViewDestroyed(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewDestroyed(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentViewDestroyed(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void destroyFragmentView()&gt;">
+    <node type="PassOut" unit="virtualinvoke $r6.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewDestroyed(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performStop()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentStopped(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentStopped(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentStopped(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentStopped(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void stop()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performStop()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentStopped(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performPause()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPaused(androidx.fragment.app.Fragment,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentPaused(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke $r3.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPaused(androidx.fragment.app.Fragment,boolean)&gt;($r1, 1)"/>
+    <node type="StaticCreateMethod" unit="$r2 = r0.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r9.&lt;androidx.fragment.app.FragmentManager$FragmentLifecycleCallbacks: void onFragmentPaused(androidx.fragment.app.FragmentManager,androidx.fragment.app.Fragment)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void pause()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: void performPause()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentPaused(androidx.fragment.app.Fragment,boolean)&gt;($r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: boolean isMenuAvailable(androidx.fragment.app.Fragment)&gt;">
+    <node type="StaticCreateMethod" unit="r0 = $r1.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void invalidateMenuForFragment(androidx.fragment.app.Fragment)&gt;">
+    <node type="PassOut" unit="$z0 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: boolean isMenuAvailable(androidx.fragment.app.Fragment)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStateManager: void moveToExpectedState()&gt;">
+    <node unit="$i0 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: int computeExpectedState()&gt;()"/>
+    <node type="ReceiveFromRetValue" unit="$r6 = virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node unit="$r7 = staticinvoke &lt;androidx.fragment.app.SpecialEffectsController: androidx.fragment.app.SpecialEffectsController getOrCreateController(android.view.ViewGroup,androidx.fragment.app.FragmentManager)&gt;($r5, $r6)"/>
+    <node unit="$i0 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: int computeExpectedState()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void ensureInflatedView()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;()"/>
+    <node unit="$i0 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: int computeExpectedState()&gt;()"/>
+    <node type="StaticCreateMethod" unit="$r6 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="ReceiveFromRetValue" unit="$r6 = virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node unit="$r7 = staticinvoke &lt;androidx.fragment.app.SpecialEffectsController: androidx.fragment.app.SpecialEffectsController getOrCreateController(android.view.ViewGroup,androidx.fragment.app.FragmentManager)&gt;($r5, $r6)"/>
+    <node unit="$i0 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: int computeExpectedState()&gt;()"/>
+    <node type="ReceiveFromRetValue" unit="$r6 = virtualinvoke $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getParentFragmentManager()&gt;()"/>
+    <node unit="$r7 = staticinvoke &lt;androidx.fragment.app.SpecialEffectsController: androidx.fragment.app.SpecialEffectsController getOrCreateController(android.view.ViewGroup,androidx.fragment.app.FragmentManager)&gt;($r5, $r6)"/>
+    <node type="StaticCreateMethod" unit="$r6 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="StaticCreateMethod" unit="$r6 = $r2.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r6.&lt;androidx.fragment.app.FragmentManager: void invalidateMenuForFragment(androidx.fragment.app.Fragment)&gt;($r2)"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void destroy()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void pause()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void create()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void stop()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void attach()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void detach()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStore: void moveToExpectedState()&gt;">
+    <node unit="virtualinvoke $r7.&lt;androidx.fragment.app.FragmentStateManager: void moveToExpectedState()&gt;()"/>
+    <node unit="virtualinvoke $r7.&lt;androidx.fragment.app.FragmentStateManager: void moveToExpectedState()&gt;()"/>
+    <node unit="virtualinvoke $r7.&lt;androidx.fragment.app.FragmentStateManager: void moveToExpectedState()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$7: void &lt;init&gt;(androidx.fragment.app.FragmentManager,android.view.ViewGroup,android.view.View,androidx.fragment.app.Fragment)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentManager$7: androidx.fragment.app.FragmentManager this$0&gt; = $r1"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void completeShowHideFragment(androidx.fragment.app.Fragment)&gt;">
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void invalidateMenuForFragment(androidx.fragment.app.Fragment)&gt;($r1)"/>
+    <node type="PassOut" unit="specialinvoke $r3.&lt;androidx.fragment.app.FragmentManager$7: void &lt;init&gt;(androidx.fragment.app.FragmentManager,android.view.ViewGroup,android.view.View,androidx.fragment.app.Fragment)&gt;(r0, $r8, $r4, $r1)"/>
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void invalidateMenuForFragment(androidx.fragment.app.Fragment)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void moveFragmentToExpectedState(androidx.fragment.app.Fragment)&gt;">
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void completeShowHideFragment(androidx.fragment.app.Fragment)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void performPendingDeferredStart(androidx.fragment.app.FragmentStateManager)&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentStateManager: void moveToExpectedState()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void startPendingDeferredFragments()&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void performPendingDeferredStart(androidx.fragment.app.FragmentStateManager)&gt;($r5)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void moveToState(int,boolean)&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentStore: void moveToExpectedState()&gt;()"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void startPendingDeferredFragments()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveFragmentToExpectedState(androidx.fragment.app.Fragment)&gt;($r6)"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void startPendingDeferredFragments()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveFragmentToExpectedState(androidx.fragment.app.Fragment)&gt;($r6)"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void startPendingDeferredFragments()&gt;()"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void startPendingDeferredFragments()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveFragmentToExpectedState(androidx.fragment.app.Fragment)&gt;($r6)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(int,boolean)&gt;($i0, 0)"/>
+    <node unit="$r2 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: java.util.Set collectAllSpecialEffectsController()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchDestroyView()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void performDestroyView()&gt;">
+    <node type="StaticCreateMethod" unit="$r1 = r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentManager: void dispatchDestroyView()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void destroyFragmentView(androidx.fragment.app.Fragment)&gt;">
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.Fragment: void performDestroyView()&gt;()"/>
+    <node type="PassOut" unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentLifecycleCallbacksDispatcher: void dispatchOnFragmentViewDestroyed(androidx.fragment.app.Fragment,boolean)&gt;($r1, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void cancelExitAnimation(androidx.fragment.app.Fragment)&gt;">
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void destroyFragmentView(androidx.fragment.app.Fragment)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void moveToState(androidx.fragment.app.Fragment,int)&gt;">
+    <node unit="$i2 = virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: int computeExpectedState()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void create()&gt;()"/>
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void cancelExitAnimation(androidx.fragment.app.Fragment)&gt;($r1)"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void create()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void ensureInflatedView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void attach()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void ensureInflatedView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void create()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void attach()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void stop()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void destroyFragmentView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void destroy()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void ensureInflatedView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void destroy()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void detach()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void activityCreated()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void start()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void ensureInflatedView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void destroyFragmentView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void pause()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void destroy()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void destroy()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void resume()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void stop()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void detach()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void createView()&gt;()"/>
+    <node unit="virtualinvoke $r5.&lt;androidx.fragment.app.FragmentStateManager: void detach()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void moveToState(androidx.fragment.app.Fragment)&gt;">
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(androidx.fragment.app.Fragment,int)&gt;($r1, $i0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentTransition: void addToFirstInLastOut(androidx.fragment.app.BackStackRecord,androidx.fragment.app.FragmentTransaction$Op,android.util.SparseArray,boolean,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r10 = $r2.&lt;androidx.fragment.app.BackStackRecord: androidx.fragment.app.FragmentManager mManager&gt;"/>
+    <node type="PassOut" unit="$r11 = virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager: androidx.fragment.app.FragmentStateManager createOrGetFragmentStateManager(androidx.fragment.app.Fragment)&gt;($r1)"/>
+    <node type="PassOut" unit="virtualinvoke $r10.&lt;androidx.fragment.app.FragmentManager: void moveToState(androidx.fragment.app.Fragment)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentTransition: void calculatePopFragments(androidx.fragment.app.BackStackRecord,android.util.SparseArray,boolean)&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = $r0.&lt;androidx.fragment.app.BackStackRecord: androidx.fragment.app.FragmentManager mManager&gt;"/>
+    <node unit="staticinvoke &lt;androidx.fragment.app.FragmentTransition: void addToFirstInLastOut(androidx.fragment.app.BackStackRecord,androidx.fragment.app.FragmentTransaction$Op,android.util.SparseArray,boolean,boolean)&gt;($r0, $r6, $r1, 1, $z0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentTransition: void calculateFragments(androidx.fragment.app.BackStackRecord,android.util.SparseArray,boolean)&gt;">
+    <node unit="staticinvoke &lt;androidx.fragment.app.FragmentTransition: void addToFirstInLastOut(androidx.fragment.app.BackStackRecord,androidx.fragment.app.FragmentTransaction$Op,android.util.SparseArray,boolean,boolean)&gt;($r0, $r4, $r1, 0, $z0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentTransition: void startTransitions(android.content.Context,androidx.fragment.app.FragmentContainer,java.util.ArrayList,java.util.ArrayList,int,int,boolean,androidx.fragment.app.FragmentTransition$Callback)&gt;">
+    <node unit="staticinvoke &lt;androidx.fragment.app.FragmentTransition: void calculatePopFragments(androidx.fragment.app.BackStackRecord,android.util.SparseArray,boolean)&gt;($r7, $r4, $z0)"/>
+    <node unit="staticinvoke &lt;androidx.fragment.app.FragmentTransition: void calculateFragments(androidx.fragment.app.BackStackRecord,android.util.SparseArray,boolean)&gt;($r7, $r4, $z0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: java.util.Set collectChangedControllers(java.util.ArrayList,int,int)&gt;">
+    <node unit="$r10 = staticinvoke &lt;androidx.fragment.app.SpecialEffectsController: androidx.fragment.app.SpecialEffectsController getOrCreateController(android.view.ViewGroup,androidx.fragment.app.FragmentManager)&gt;($r9, r0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void addAddedFragments(androidx.collection.ArraySet)&gt;">
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(androidx.fragment.app.Fragment,int)&gt;($r6, $i0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: int postponePostponableTransactions(java.util.ArrayList,java.util.ArrayList,int,int,androidx.collection.ArraySet)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void addAddedFragments(androidx.collection.ArraySet)&gt;($r3)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void executeOpsTogether(java.util.ArrayList,java.util.ArrayList,int,int)&gt;">
+    <node type="StaticCreateMethod" unit="$r12 = $r8.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(int,boolean)&gt;($i2, 1)"/>
+    <node unit="$r18 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: java.util.Set collectChangedControllers(java.util.ArrayList,int,int)&gt;($r1, $i0, $i1)"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(int,boolean)&gt;($i2, 1)"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(int,boolean)&gt;($i2, 1)"/>
+    <node unit="staticinvoke &lt;androidx.fragment.app.FragmentTransition: void startTransitions(android.content.Context,androidx.fragment.app.FragmentContainer,java.util.ArrayList,java.util.ArrayList,int,int,boolean,androidx.fragment.app.FragmentTransition$Callback)&gt;($r15, $r16, $r1, $r2, $i0, $i1, 0, $r17)"/>
+    <node unit="staticinvoke &lt;androidx.fragment.app.FragmentTransition: void startTransitions(android.content.Context,androidx.fragment.app.FragmentContainer,java.util.ArrayList,java.util.ArrayList,int,int,boolean,androidx.fragment.app.FragmentTransition$Callback)&gt;($r15, $r16, $r1, $r2, $i0, $i4, 1, $r17)"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(int,boolean)&gt;($i2, 1)"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void addAddedFragments(androidx.collection.ArraySet)&gt;($r21)"/>
+    <node unit="$i4 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: int postponePostponableTransactions(java.util.ArrayList,java.util.ArrayList,int,int,androidx.collection.ArraySet)&gt;($r1, $r2, $i0, $i1, $r21)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void removeRedundantOperationsAndExecute(java.util.ArrayList,java.util.ArrayList)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void executeOpsTogether(java.util.ArrayList,java.util.ArrayList,int,int)&gt;($r1, $r2, $i1, $i0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void doPendingDeferredStart()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void startPendingDeferredFragments()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: boolean execPendingActions(boolean)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void updateOnBackPressedCallbackEnabled()&gt;()"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void doPendingDeferredStart()&gt;()"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void removeRedundantOperationsAndExecute(java.util.ArrayList,java.util.ArrayList)&gt;($r1, $r2)"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void updateOnBackPressedCallbackEnabled()&gt;()"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void doPendingDeferredStart()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: boolean execPendingActions()&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = $r1.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node unit="$z0 = virtualinvoke $r2.&lt;androidx.fragment.app.FragmentManager: boolean execPendingActions(boolean)&gt;(1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onStart()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: void noteStateNotSaved()&gt;()"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: boolean execPendingActions()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: androidx.fragment.app.FragmentManager getSupportFragmentManager()&gt;">
+    <node type="StaticCreateMethod" unit="r2 = $r1.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: androidx.fragment.app.FragmentManager getSupportFragmentManager()&gt;">
+    <node type="ReceiveFromRetValue" unit="$r1 = virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: androidx.fragment.app.FragmentManager getSupportFragmentManager()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: boolean markState(androidx.fragment.app.FragmentManager,androidx.lifecycle.Lifecycle$State)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManager"/>
+    <node type="getFragment" unit="$r1 = virtualinvoke $r5.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager getChildFragmentManager()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void markFragmentsCreated()&gt;">
+    <node type="ReceiveFromRetValue" unit="$r2 = virtualinvoke r0.&lt;androidx.fragment.app.FragmentActivity: androidx.fragment.app.FragmentManager getSupportFragmentManager()&gt;()"/>
+    <node unit="$z0 = staticinvoke &lt;androidx.fragment.app.FragmentActivity: boolean markState(androidx.fragment.app.FragmentManager,androidx.lifecycle.Lifecycle$State)&gt;($r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onStop()&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void markFragmentsCreated()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: void onStop()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void onStop()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchViewCreated()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentStore: void setNonConfig(androidx.fragment.app.FragmentManagerViewModel)&gt;">
+    <node type="ReceiveFromParatMethod" unit="$r1 := @parameter0: androidx.fragment.app.FragmentManagerViewModel"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$2: void onStart(androidx.fragment.app.Fragment,androidx.core.os.CancellationSignal)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$2: androidx.fragment.app.FragmentManager this$0&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentManager: void addCancellationSignal(androidx.fragment.app.Fragment,androidx.core.os.CancellationSignal)&gt;($r1, $r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchStart()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(5)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchStop()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(4)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchCreate()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: boolean dispatchContextItemSelected(android.view.MenuItem)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: boolean dispatchCreateOptionsMenu(android.view.Menu,android.view.MenuInflater)&gt;">
+    <node type="StaticCreateMethod" unit="$r4 = $r3.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchActivityCreated()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(4)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void dispatchConfigurationChanged(android.content.res.Configuration)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void dispatchCreate()&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = $r1.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentManager: void dispatchCreate()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: boolean dispatchPrepareOptionsMenu(android.view.Menu)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: boolean onPreparePanel(int,android.view.View,android.view.Menu)&gt;">
+    <node unit="$z1 = virtualinvoke $r3.&lt;androidx.fragment.app.FragmentController: boolean dispatchPrepareOptionsMenu(android.view.Menu)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: boolean onPrepareOptionsPanel(android.view.View,android.view.Menu)&gt;">
+    <node unit="$z0 = specialinvoke r0.&lt;androidx.activity.ComponentActivity: boolean onPreparePanel(int,android.view.View,android.view.Menu)&gt;(0, $r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchResume()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(7)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void dispatchOptionsMenuClosed(android.view.Menu)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchAttach()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: boolean dispatchOptionsItemSelected(android.view.MenuItem)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: boolean checkForMenus()&gt;">
+    <node type="PassOut" unit="$z0 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: boolean isMenuAvailable(androidx.fragment.app.Fragment)&gt;($r5)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.SpecialEffectsController$FragmentStateManagerOperation: void complete()&gt;">
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentStateManager: void moveToExpectedState()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onPanelClosed(int,android.view.Menu)&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: void dispatchOptionsMenuClosed(android.view.Menu)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onConfigurationChanged(android.content.res.Configuration)&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: void noteStateNotSaved()&gt;()"/>
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: void dispatchConfigurationChanged(android.content.res.Configuration)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: void onPanelClosed(int,android.view.Menu)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void onPanelClosed(int,android.view.Menu)&gt;($i0, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void attachHost(androidx.fragment.app.Fragment)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentManager: void attachController(androidx.fragment.app.FragmentHostCallback,androidx.fragment.app.FragmentContainer,androidx.fragment.app.Fragment)&gt;($r2, $r2, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void restoreSaveState(android.os.Parcelable)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentManager: void restoreSaveState(android.os.Parcelable)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity$2: void onContextAvailable(android.content.Context)&gt;">
+    <node unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentController: void attachHost(androidx.fragment.app.Fragment)&gt;(null)"/>
+    <node unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentController: void restoreSaveState(android.os.Parcelable)&gt;($r6)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void init()&gt;">
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void addOnContextAvailableListener(androidx.activity.contextaware.OnContextAvailableListener)&gt;($r3)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;">
+    <node type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+    <node type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+    <node type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+    <node type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onResume()&gt;">
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentController: void noteStateNotSaved()&gt;()"/>
+    <node unit="virtualinvoke $r1.&lt;androidx.fragment.app.FragmentController: boolean execPendingActions()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$3: androidx.fragment.app.Fragment instantiate(java.lang.ClassLoader,java.lang.String)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$3: androidx.fragment.app.FragmentManager this$0&gt;"/>
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$3: androidx.fragment.app.FragmentManager this$0&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void forcePostponedTransactions()&gt;">
+    <node unit="$r1 = specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: java.util.Set collectAllSpecialEffectsController()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentHostCallback: void &lt;init&gt;(android.app.Activity,android.content.Context,android.os.Handler,int)&gt;">
+    <node unit="specialinvoke $r3.&lt;androidx.fragment.app.FragmentManagerImpl: void &lt;init&gt;()&gt;()"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt; = $r3"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: void dispatchPause()&gt;">
+    <node type="StaticCreateMethod" unit="$r2 = $r1.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentHostCallback: void &lt;init&gt;(androidx.fragment.app.FragmentActivity)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentHostCallback: void &lt;init&gt;(android.app.Activity,android.content.Context,android.os.Handler,int)&gt;($r1, $r1, $r2, 0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity$HostCallbacks: void &lt;init&gt;(androidx.fragment.app.FragmentActivity)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentHostCallback: void &lt;init&gt;(androidx.fragment.app.FragmentActivity)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void dispatchPause()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void dispatchStateChange(int)&gt;(5)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.lifecycle.ReportFragment: void injectIfNeededIn(android.app.Activity)&gt;">
+    <node unit="virtualinvoke $r1.&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;($r0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.core.app.ComponentActivity: void onCreate(android.os.Bundle)&gt;">
+    <node unit="staticinvoke &lt;androidx.lifecycle.ReportFragment: void injectIfNeededIn(android.app.Activity)&gt;(r0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: void onStart()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void onStart()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: void removeCancellationSignal(androidx.fragment.app.Fragment,androidx.core.os.CancellationSignal)&gt;">
+    <node type="PassOut" unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void destroyFragmentView(androidx.fragment.app.Fragment)&gt;($r1)"/>
+    <node type="PassOut" unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: void moveToState(androidx.fragment.app.Fragment)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager$2: void onComplete(androidx.fragment.app.Fragment,androidx.core.os.CancellationSignal)&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = r0.&lt;androidx.fragment.app.FragmentManager$2: androidx.fragment.app.FragmentManager this$0&gt;"/>
+    <node type="PassOut" unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentManager: void removeCancellationSignal(androidx.fragment.app.Fragment,androidx.core.os.CancellationSignal)&gt;($r1, $r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentManager: android.os.Parcelable saveAllState()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void forcePostponedTransactions()&gt;()"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentManager: void endAnimatingAwayFragments()&gt;()"/>
+    <node unit="virtualinvoke r0.&lt;androidx.fragment.app.FragmentManager: boolean execPendingActions(boolean)&gt;(1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentController: android.os.Parcelable saveAllState()&gt;">
+    <node type="StaticCreateMethod" unit="$r3 = $r2.&lt;androidx.fragment.app.FragmentHostCallback: androidx.fragment.app.FragmentManager mFragmentManager&gt;"/>
+    <node unit="$r1 = virtualinvoke $r3.&lt;androidx.fragment.app.FragmentManager: android.os.Parcelable saveAllState()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void &lt;init&gt;()&gt;">
+    <node unit="specialinvoke $r2.&lt;androidx.fragment.app.FragmentActivity$HostCallbacks: void &lt;init&gt;(androidx.fragment.app.FragmentActivity)&gt;(r0)"/>
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void init()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: void &lt;init&gt;()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void &lt;init&gt;()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;com.example.notificationtest.MainActivity: void &lt;init&gt;()&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.appcompat.app.AppCompatActivity: void &lt;init&gt;()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.Fragment: void &lt;init&gt;()&gt;">
+    <node unit="specialinvoke $r4.&lt;androidx.fragment.app.FragmentManagerImpl: void &lt;init&gt;()&gt;()"/>
+    <node type="StaticCreateMethod" unit="r0.&lt;androidx.fragment.app.Fragment: androidx.fragment.app.FragmentManager mChildFragmentManager&gt; = $r4"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity$1: android.os.Bundle saveState()&gt;">
+    <node unit="virtualinvoke $r3.&lt;androidx.fragment.app.FragmentActivity: void markFragmentsCreated()&gt;()"/>
+    <node unit="$r2 = virtualinvoke $r6.&lt;androidx.fragment.app.FragmentController: android.os.Parcelable saveAllState()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onPause()&gt;">
+    <node unit="virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: void dispatchPause()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: void setContentView(int)&gt;">
+    <node type="setContentView" unit="virtualinvoke $r1.&lt;androidx.appcompat.app.AppCompatDelegate: void setContentView(int)&gt;($i0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;">
+    <node unit="$z0 = virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: boolean dispatchOptionsItemSelected(android.view.MenuItem)&gt;($r1)"/>
+    <node unit="$z0 = virtualinvoke $r2.&lt;androidx.fragment.app.FragmentController: boolean dispatchContextItemSelected(android.view.MenuItem)&gt;($r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.core.app.ComponentActivity: void onCreate(android.os.Bundle)&gt;($r1)"/>
+    <node unit="staticinvoke &lt;androidx.lifecycle.ReportFragment: void injectIfNeededIn(android.app.Activity)&gt;(r0)"/>
+    <node type="setContentView" unit="virtualinvoke r0.&lt;androidx.activity.ComponentActivity: void setContentView(int)&gt;($i0)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: void onCreate(android.os.Bundle)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;($r2)"/>
+    <node unit="virtualinvoke $r4.&lt;androidx.fragment.app.FragmentController: void dispatchCreate()&gt;()"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.fragment.app.FragmentActivity: boolean onCreatePanelMenu(int,android.view.Menu)&gt;">
+    <node unit="$z1 = virtualinvoke $r1.&lt;androidx.fragment.app.FragmentController: boolean dispatchCreateOptionsMenu(android.view.Menu,android.view.MenuInflater)&gt;($r2, $r3)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;">
+    <node unit="$z0 = specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;($i0, $r1)"/>
+  </methodSummary>
+  <methodSummary source="&lt;androidx.appcompat.app.AppCompatActivity: void onConfigurationChanged(android.content.res.Configuration)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.fragment.app.FragmentActivity: void onConfigurationChanged(android.content.res.Configuration)&gt;($r2)"/>
+  </methodSummary>
+  <methodSummary source="&lt;com.example.notificationtest.MainActivity: void onCreate(android.os.Bundle)&gt;">
+    <node unit="specialinvoke r0.&lt;androidx.appcompat.app.AppCompatActivity: void onCreate(android.os.Bundle)&gt;($r1)"/>
+    <node type="setContentView" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void setContentView(int)&gt;(2131427356)"/>
+  </methodSummary>
+</root>

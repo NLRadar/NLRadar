@@ -1,55 +1,38 @@
 package dataflow;
 
-import soot.SootMethod;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
+import dataStructure.FunctionTaintInfo;
+import dataStructure.MyEdge;
 import soot.Body;
 import soot.Local;
 import soot.RefType;
-import soot.Unit;
 import soot.Scene;
 import soot.SootClass;
 import soot.SootFieldRef;
+import soot.SootMethod;
+import soot.Unit;
+import soot.Value;
+import soot.ValueBox;
 import soot.jimple.ArrayRef;
 import soot.jimple.AssignStmt;
 import soot.jimple.FieldRef;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
-import soot.jimple.Jimple;
-import soot.jimple.internal.JInstanceFieldRef;
+import soot.jimple.NewExpr;
 import soot.jimple.Stmt;
 import soot.jimple.VirtualInvokeExpr;
+import soot.jimple.internal.JInstanceFieldRef;
 import soot.jimple.internal.JReturnStmt;
 import soot.jimple.internal.JVirtualInvokeExpr;
-import soot.toolkits.graph.BriefUnitGraph;
-import soot.toolkits.graph.UnitGraph;
-import soot.toolkits.scalar.SimpleLocalDefs;
-import soot.toolkits.scalar.SimpleLocalUses;
-import soot.toolkits.scalar.UnitValueBoxPair;
-import dataStructure.FunctionTaintInfo;
 import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Edge;
-import dataStructure.MyEdge;
-import dataflow.LocalVariableAnalysis;
-import polyglot.ast.Return;
-import soot.Local;
-import soot.Value;
-import soot.ValueBox;
-import soot.JastAddJ.Expr;
-import soot.JastAddJ.ReturnStmt;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import org.checkerframework.checker.units.qual.A;
-
-import com.esotericsoftware.asm.Type;
-
-import java.util.HashSet;
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Iterator;
-
 
 public class FunctionTransferValue {
 
@@ -83,7 +66,7 @@ public class FunctionTransferValue {
             for(Local taintedLocal : taintLocals){
                 queue.add(taintedLocal);
             }
-            //taintLocals
+
             while(!queue.isEmpty()){
                 Local local = queue.poll();
                 Set<Unit> uses = LocalVariableAnalysis.findUses(body, local);
@@ -112,7 +95,7 @@ public class FunctionTransferValue {
                             if(fieldRef instanceof JInstanceFieldRef){
                                 JInstanceFieldRef jInstanceFieldRef = (JInstanceFieldRef) fieldRef;
                                 Local base = (Local) jInstanceFieldRef.getBase();
-                                System.out.println(base);
+
                                 if(!taintLocals.contains(base)){
                                     taintLocals.add(base);
                                     queue.add(base);
@@ -126,7 +109,6 @@ public class FunctionTransferValue {
                             if(invokeExpr instanceof VirtualInvokeExpr){
                                 VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
                                 Local base = (Local) virtualInvokeExpr.getBase();
-                                System.out.println(base);
                                 if(!taintLocals.contains(base)){
                                     taintLocals.add(base);
                                     queue.add(base);
@@ -157,7 +139,7 @@ public class FunctionTransferValue {
                 System.out.println(stmt.getClass().toString());
                 if(stmt instanceof JReturnStmt){
                     System.out.println("stmt: "+stmt);
-                    //return value
+                  
                     JReturnStmt returnStmt = (JReturnStmt) stmt;
                     //Value ReturnValue = returnStmt.getOp();
                     Value ReturnValue = returnStmt.getOp();
@@ -173,6 +155,7 @@ public class FunctionTransferValue {
             }
 
             if(TraceBackFlag){
+         
                 CallGraph callGraph = Scene.v().getCallGraph();
                 edgeIterator = callGraph.edgesInto(srcMethod);
                 if (edgeIterator == null){
@@ -210,11 +193,13 @@ public class FunctionTransferValue {
         return myEdges;
     }
     
+
     public static List<MyEdge> findedgesoutof(FunctionTaintInfo functionTaintInfo){
         SootMethod srcMethod = functionTaintInfo.getMethod();
         Set<Local> srcLocals = functionTaintInfo.getTaintedLocals();
         List<MyEdge> myEdges = new ArrayList<MyEdge>();
         Set<Local> taintLocals = new HashSet<Local>();
+        Set<Local> taintLocalstemp = new HashSet<Local>();
         Queue<Local> queue = new LinkedList<Local>();
         Set<Unit> taintUnits = new HashSet<Unit>();
         Set<JInstanceFieldRef> fieldRefs = new HashSet<JInstanceFieldRef>();
@@ -232,47 +217,47 @@ public class FunctionTransferValue {
                 System.out.println("srcLocals is null");
                 return myEdges;
             }
-
+            
             for(Local srcLocal : srcLocals){
+                System.out.println("srcLocal: "+srcLocal);
                 taintLocals.add(srcLocal);
-            }
-
-            for(Local taintedLocal : taintLocals){
-                queue.add(taintedLocal);
+                taintLocalstemp.add(srcLocal);
             }
             RefType contextType = Scene.v().getRefType("android.content.Context");
-            while(!queue.isEmpty()){
-                Local local = queue.poll();
-                System.out.println("local: "+local);
-                if(local.getType() instanceof RefType){
-                    RefType type = (RefType) local.getType();
-                    if(type.equals(contextType)){
-                        System.out.println("Found a Context variable: " + local.getName() + " in method " + body.getMethod());
-                        continue;
+
+            for(Unit unit : body.getUnits()){
+                Stmt stmt = (Stmt) unit;
+                System.out.println("stmt: "+stmt);
+                List<ValueBox> valueboxs = stmt.getUseAndDefBoxes();
+                Boolean taintedflag = false;
+                for(ValueBox valuebox : valueboxs){
+                    System.out.println("valuebox: "+valuebox);
+                    Value value = valuebox.getValue();
+                    if(value instanceof Local){
+                        Local local = (Local) value;
+                        System.out.println("local: "+local);
+                        if(taintLocalstemp.contains(local)){
+                            taintedflag = true;
+                        }
                     }
                 }
-                List<Unit> uses2 = LocalVariableAnalysis.findDefs(body, local);
-                Set<Unit> uses = LocalVariableAnalysis.findUses(body, local);
-                uses.addAll(uses2);
-                for(Unit use : uses){
-                    Stmt stmt = (Stmt) use;
-                    System.out.println("use: "+stmt);
+                if(taintedflag){
+                    taintUnits.add(stmt);
                     if(stmt instanceof AssignStmt){
                         AssignStmt assignStmt = (AssignStmt) stmt;
                         Value leftValue = assignStmt.getLeftOp();
-                        System.out.println("leftValue: "+leftValue);
                         if(leftValue instanceof Local){
                             Local leftLocal = (Local) leftValue;
-                            if(!taintLocals.contains(leftLocal)&&leftLocal.toString()!="r0"){
+                            if(!taintLocalstemp.contains(leftLocal)){
                                 taintLocals.add(leftLocal);
-                                queue.add(leftLocal);
+                                taintLocalstemp.add(leftLocal);
                             }
                         }
                         if(leftValue instanceof ArrayRef){
                             Local base = (Local) ((ArrayRef) leftValue).getBase();
-                            if(!taintLocals.contains(base)&&base.toString()!="r0"){
+                            if(!taintLocalstemp.contains(base)){
                                 taintLocals.add(base);
-                                queue.add(base);
+                                taintLocalstemp.add(base);
                             }
                         }
                         if(leftValue instanceof FieldRef){
@@ -281,45 +266,50 @@ public class FunctionTransferValue {
                                 JInstanceFieldRef jInstanceFieldRef = (JInstanceFieldRef) fieldRef;
                                 Local base = (Local) jInstanceFieldRef.getBase();
                                 System.out.println(base);
-                                if(!taintLocals.contains(base)&&taintLocals.toString()!="r0"){
+                                if(!taintLocalstemp.contains(base)){
                                     taintLocals.add(base);
-                                    queue.add(base);
+                                    taintLocalstemp.add(base);
                                 }
                             }
                         }
                     }
                     if (stmt.containsInvokeExpr()){
                         InvokeExpr invokeExpr = stmt.getInvokeExpr();
-                        if(stmt.toString().contains("android.content.Intent")){
-                            if(invokeExpr instanceof VirtualInvokeExpr){
-                                VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
-                                Local base = (Local) virtualInvokeExpr.getBase();
-                                System.out.println(base);
-                                if(!taintLocals.contains(base)&&taintLocals.toString()!="r0"){
-                                    taintLocals.add(base);
-                                    queue.add(base);
-                                }
-                            }
-                        }
-                        else{
-                            List<ValueBox> usesBoxs = stmt.getUseBoxes();
-                            for(ValueBox valueBox : usesBoxs){
-                                Value value = valueBox.getValue();
-                                System.out.println(value);
-                                if(value instanceof Local){
-                                    Local localValue = (Local) value;
-                                    if(!taintLocals.contains(localValue)&&taintLocals.toString()!="r0"){
-                                        taintLocals.add(localValue);
-                                        queue.add(localValue);
+                        List<ValueBox> usesBoxs = stmt.getUseBoxes();
+                        for(ValueBox valueBox : usesBoxs){
+                            Value value = valueBox.getValue();
+                            System.out.println(value);
+                            if(value instanceof Local){
+                                Local localValue = (Local) value;
+                                if(localValue.getType() instanceof RefType){
+                                    RefType type = (RefType) localValue.getType();
+                                    if(type.equals(contextType)){
+                                        continue;
                                     }
+                                }
+                                if(!taintLocalstemp.contains(localValue)){
+                                    taintLocals.add(localValue);
+                                    taintLocalstemp.add(localValue);
                                 }
                             }
                         }
                     }
-                    taintUnits.add(stmt);
+                    if (stmt instanceof AssignStmt){
+                        Value rightValue = ((AssignStmt) stmt).getRightOp();
+                        if (rightValue instanceof NewExpr){
+                            NewExpr newExpr = (NewExpr) rightValue;
+                            Value leftValue = ((AssignStmt) stmt).getLeftOp();
+                            if(leftValue instanceof Local){
+                                Local leftLocal = (Local) leftValue;
+                                if(taintLocalstemp.contains(leftLocal)){
+                                    taintLocalstemp.remove(leftLocal);
+                                }
+                            }
+                        }
+                    }
                 }
-
             }
+
             
             Iterator<Local> iterator = taintLocals.iterator();
             while (iterator.hasNext()) {
@@ -386,6 +376,11 @@ public class FunctionTransferValue {
                                     }
                                 }
                             }
+                            if(stmt.toString().contains("android.content.SharedPreferences$Editor")){
+                                if(dgtTaintedLocals.isEmpty()){
+                                    continue;
+                                }
+                            }
                         }
                         FunctionTaintInfo dgtFunctionTaintInfo = new FunctionTaintInfo(dgtMethod,dgtTaintedLocals,dgtReverseTaintedLocals,stmt);
                         dgtFunctionTaintInfo.setIsConcrete(false);
@@ -443,13 +438,6 @@ public class FunctionTransferValue {
                                                 }
                                                 recordstmt = sootStmt;
                                             }
-                                            if (sootLeftValue instanceof JInstanceFieldRef){
-                                                JInstanceFieldRef sootJInstanceFieldRef = (JInstanceFieldRef) sootLeftValue;
-                                                if(sootJInstanceFieldRef.toString().equals(jInstanceFieldRef.toString())&&sootRightValue instanceof Local){
-                                                    dgtTaintedLocals.add((Local) sootRightValue);
-                                                }
-                                                recordstmt = sootStmt;
-                                            }
                                         }
                                     }
                                     if(dgtTaintedLocals.size()>0){
@@ -469,7 +457,7 @@ public class FunctionTransferValue {
             }
 
         }
-
+        System.out.println("myEdges.size(): "+myEdges.size());
 
         return myEdges;
     }

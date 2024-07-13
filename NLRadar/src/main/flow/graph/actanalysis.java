@@ -1,49 +1,30 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 import dataStructure.FunctionTaintInfo;
 import dataStructure.GlobalValue;
 import dataflow.LocalVariableAnalysis;
-import dataflow.FunctionTransferValue;
+import function.InfoPrint;
+import soot.Body;
+import soot.Local;
+import soot.SootMethod;
+import soot.Unit;
+import soot.Value;
+import soot.ValueBox;
 import soot.jimple.AssignStmt;
+import soot.jimple.Constant;
 import soot.jimple.FieldRef;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
-import soot.jimple.NewExpr;
-import soot.jimple.NullConstant;
-import soot.jimple.SpecialInvokeExpr;
 import soot.jimple.Stmt;
-import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
-import soot.jimple.Constant;
-import soot.jimple.FieldRef;
-import soot.jimple.StringConstant;
-import soot.jimple.NullConstant;
-import soot.jimple.NewExpr;
-import soot.jimple.SpecialInvokeExpr;
-import soot.jimple.internal.JimpleLocal;
-import soot.*;
-
-
-import java.util.Set;
-
-import javax.swing.text.StyledEditorKit;
-
-import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
-
-import java.util.ArrayList;
-
-import java.util.Iterator;
-
-import java.util.Queue;
-import java.util.LinkedList;
-
-
-import function.InfoPrint;
 
 class TraceValue{
     private FunctionTaintInfo functionTaintInfo;
@@ -193,8 +174,8 @@ public class actanalysis {
             TraceValue tracevalue = queue.poll();
             FunctionTaintInfo from = tracevalue.getFunctionTaintInfo();
             System.out.println("from: "+from.getMethod().getSignature());
-            infoPrint.writeToFile(findingname,"tree: "+from.getMethod().getSignature()+"\n");
-            
+            System.out.println("tree: "+from.getMethod().getSignature()+"\n");
+
             if(reversemethodMap.containsKey(from)){
                 HashSet<FunctionTaintInfo> functionTaintInfos = reversemethodMap.get(from);
                 for(FunctionTaintInfo toinfo : functionTaintInfos){
@@ -203,14 +184,14 @@ public class actanalysis {
                         if(sootMethod2.getName().equals("onNotificationPosted")){
                             System.out.println("onNotificationPosted");
                             System.out.println("from: "+from.getMethod().getSignature());
-                            
+                        
                             Stmt stmt = from.getStmt();
                             System.out.println("stmt: "+stmt);
                         }
                         System.out.println("to: "+sootMethod2.getSignature());
                         Body body = sootMethod2.retrieveActiveBody();
                         List<Local> traceLocallist = from.getReverseTaintedLocals();
-              
+                        
                         Set<Local> traceLocals = new HashSet<Local>();
                         for(Local local : traceLocallist){
                             traceLocals.add(local);
@@ -242,7 +223,7 @@ public class actanalysis {
                                                     AssignStmt assignStmt = (AssignStmt)stmt1;
                                                     Value rightValue = assignStmt.getRightOp();
                                                     Value leftValue = assignStmt.getLeftOp();
-                                         
+                                                    //如果是常量
                                                     if(rightValue instanceof Constant){
                                                         System.out.println("value: "+rightValue);
                                                         valueList.add(rightValue.toString());
@@ -273,14 +254,13 @@ public class actanalysis {
                                             }
                                         }
                                         else if(value instanceof Constant){
-                                            System.out.println("value: "+value);
+                                    
                                             valueList.add(value.toString());
                                             valuetemp.add(value.toString());
                                         }
                                         else if(value instanceof FieldRef){
                                             try{
                                                 String valueString = LocalVariableAnalysis.getVariableName(value);
-                                                System.out.println("value: "+valueString);
                                                 valueList.add(valueString);
                                                 valuetemp.add(valueString);
                                             } catch (Exception e) {
@@ -294,7 +274,6 @@ public class actanalysis {
                                     }
                                     behaviorList.add(outputString);
                                 }
-                             
                                 if(GlobalValue.StatusBarNotificationMethods.contains(invokeExpr.getMethod().getSignature())){
                                     System.out.println("message"+invokeExpr.getMethod().getSignature());
                                     messageList.add(invokeExpr.getMethod().getSignature());
@@ -343,31 +322,12 @@ public class actanalysis {
             }
         }
 
-        infoPrint.writeToFile(findingname, "value: "+"\n");
-        for(String string : valueList){
-            System.out.println("value: "+string);
-            infoPrint.writeToFile(findingname,"value: "+string+"\n");
-        }
 
-        infoPrint.writeToFile(findingname, "behavior: "+"\n");
-        for(String string : behaviorList){
-            System.out.println("behavior: "+string);
-            infoPrint.writeToFile(findingname,"behavior: "+string+"\n");
-        }
-
-        infoPrint.writeToFile(findingname, "message: "+"\n");
-        for(String string : messageList){
-            System.out.println("message: "+string);
-            infoPrint.writeToFile(findingname,"message: "+string+"\n");
-        }
-
-   
         if(GlobalValue.createNotificationMethods.contains(sootMethod.getSignature())){
             Boolean flag = false;
             for(String string : behaviormethodlist){
                 if(GlobalValue.modifyMethods.contains(string)){
                     System.out.println("fake notification");
-                    infoPrint.writeToFile(findingname,"fake notification"+"\n");
                     flag = true;
                 }
             }
@@ -378,10 +338,10 @@ public class actanalysis {
 
     public static void parse(HashMap<FunctionTaintInfo, HashSet<FunctionTaintInfo>> methodMap1, String apkname){
         methodMap = methodMap1;
-        findingname = GlobalValue.finding_Path+apkname+".txt";
-        cgname = GlobalValue.cg_Path+apkname+".txt";
-        behaviorfilepath = GlobalValue.behavior_Path+apkname+".txt";
-        comparefilepath = GlobalValue.compare_Path+apkname+".txt";
+        behaviorfilepath = "Output/behavior/"+apkname+".txt";
+        findingname = "Output/finding/"+apkname+".txt";
+        cgname = "Output/cg/"+apkname+".txt";
+        comparefilepath = "Output/compare/"+apkname+".txt";
         visitedmethod.clear();
         //reverse
         for(FunctionTaintInfo functionTaintInfo : methodMap.keySet()){
@@ -430,7 +390,7 @@ public class actanalysis {
                 if(GlobalValue.BehaviorMethods.contains(functionTaintInfo1.getMethod().getSignature())){
                     System.out.println("function: "+functionTaintInfo1.getMethod().getSignature());
                     infoPrint.writeToFile(behaviorfilepath, "function: "+functionTaintInfo1.getMethod().getSignature()+"\n");
-              
+                
                     Stmt stmt = functionTaintInfo1.getStmt();
                     InvokeExpr invokeExpr = (InvokeExpr)stmt.getInvokeExpr();
                     for(Value value : invokeExpr.getArgs()){
@@ -443,7 +403,6 @@ public class actanalysis {
                                     AssignStmt assignStmt = (AssignStmt)stmt1;
                                     Value rightValue = assignStmt.getRightOp();
                                     Value leftValue = assignStmt.getLeftOp();
-                                    //如果是常量
                                     if(rightValue instanceof Constant){
                                         System.out.println("value: "+rightValue);
                                         infoPrint.writeToFile(behaviorfilepath, "value: "+value+"\n");
@@ -506,7 +465,6 @@ public class actanalysis {
                                     AssignStmt assignStmt = (AssignStmt)stmt1;
                                     Value rightValue = assignStmt.getRightOp();
                                     Value leftValue = assignStmt.getLeftOp();
-                                
                                     if(rightValue instanceof Constant){
                                         System.out.println("value: "+rightValue);
                                         infoPrint.writeToFile(comparefilepath, "value: "+value+"\n");
@@ -531,7 +489,6 @@ public class actanalysis {
                                         }
                                     }
                                 }
-                         
                                 for(String string : GlobalValue.StatusBarNotificationMethods){
                                     if(stmt1.toString().contains(string)){
                                         System.out.println("message: "+stmt1);
@@ -555,7 +512,7 @@ public class actanalysis {
                             }
                         }
                     }
-                
+                    InvokeExpr invokeExpr = (InvokeExpr)stmt.getInvokeExpr();
                 }
             }
         }

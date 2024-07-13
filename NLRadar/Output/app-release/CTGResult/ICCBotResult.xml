@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <Component source="com.example.notificationtest.MainActivity">
+    <intentSummary>
+      <source name="com.example.notificationtest.MainActivity"/>
+      <destination name="interICC_android.settings.CHANNEL_NOTIFICATION_SETTINGS, "/>
+      <sendICCInfo action="android.settings.CHANNEL_NOTIFICATION_SETTINGS" extras="String-android.provider.extra.APP_PACKAGE,String-android.provider.extra.CHANNEL_ID">
+        <info unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r4)" methodSig="&lt;com.example.notificationtest.MainActivity: void createNotificationChannel()&gt;" instructionId="15"/>
+      </sendICCInfo>
+      <method value="&lt;com.example.notificationtest.MainActivity: void createNotificationChannel()&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MainActivity: void createNotificationChannel()&gt;,void createNotificationChannel()"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MainActivity: void createNotificationChannel()&gt;"/>
+        <node method="MainActivity createNotificationChannel" type="CreateMethod" unit="$r4 = new android.content.Intent"/>
+        <node method="MainActivity createNotificationChannel" type="SetAttribute" unit="specialinvoke $r4.&lt;android.content.Intent: void &lt;init&gt;(java.lang.String)&gt;(&quot;android.settings.CHANNEL_NOTIFICATION_SETTINGS&quot;)"/>
+        <node method="MainActivity createNotificationChannel" type="SetIntentExtra" unit="virtualinvoke $r4.&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;(&quot;android.provider.extra.APP_PACKAGE&quot;, $r5)"/>
+        <node method="MainActivity createNotificationChannel" type="SetIntentExtra" unit="virtualinvoke $r4.&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;(&quot;android.provider.extra.CHANNEL_ID&quot;, $r5)"/>
+        <node method="MainActivity createNotificationChannel" type="SendIntent2ICC" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r4)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.MyBroadcastReceiver">
+    <intentSummary>
+      <source name="com.example.notificationtest.MyBroadcastReceiver"/>
+      <receiveICCInfo extras="String-Text,String-package">
+        <info unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)" methodSig="&lt;com.example.notificationtest.MyBroadcastReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="4" key="package" value="null"/>
+        <info unit="$r4 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)" methodSig="&lt;com.example.notificationtest.MyBroadcastReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="5" key="Text" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;com.example.notificationtest.MyBroadcastReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MyBroadcastReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;,void onReceive(android.content.Context,android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MyBroadcastReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+        <node method="MyBroadcastReceiver onReceive" type="ReceiveIntentFromRetValue" unit="$r2 = virtualinvoke r0.&lt;com.example.notificationtest.MyBroadcastReceiver: android.content.Intent getIntent()&gt;()"/>
+        <node method="MyBroadcastReceiver onReceive" type="GetIntentExtra" unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)"/>
+        <node method="MyBroadcastReceiver onReceive" type="GetIntentExtra" unit="$r4 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.intenttest">
+    <intentSummary>
+      <source name="com.example.notificationtest.intenttest"/>
+      <receiveICCInfo extras="String-package,String-Text">
+        <info unit="$r2 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)" methodSig="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;" instructionId="2" key="package" value="null"/>
+        <info unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)" methodSig="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;" instructionId="3" key="Text" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;,void receivetest(android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;"/>
+        <node method="intenttest receivetest" type="ReceiveIntentFromParatMethod" unit="$r1 := @parameter0: android.content.Intent"/>
+        <node method="intenttest receivetest" type="GetIntentExtra" unit="$r2 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)"/>
+        <node method="intenttest receivetest" type="GetIntentExtra" unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="androidx.activity.result.contract.ActivityResultContracts">
+    <intentSummary>
+      <source name="androidx.activity.result.contract.ActivityResultContracts"/>
+      <receiveICCInfo extras="intArray-androidx.activity.result.contract.extra.PERMISSION_GRANT_RESULTS,StringArray-androidx.activity.result.contract.extra.PERMISSIONS">
+        <info unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String[] getStringArrayExtra(java.lang.String)&gt;(&quot;androidx.activity.result.contract.extra.PERMISSIONS&quot;)" methodSig="&lt;androidx.activity.result.contract.ActivityResultContracts$RequestMultiplePermissions: java.util.Map parseResult(int,android.content.Intent)&gt;" instructionId="9" key="androidx.activity.result.contract.extra.PERMISSIONS" value="null"/>
+        <info unit="$r4 = virtualinvoke $r1.&lt;android.content.Intent: int[] getIntArrayExtra(java.lang.String)&gt;(&quot;androidx.activity.result.contract.extra.PERMISSION_GRANT_RESULTS&quot;)" methodSig="&lt;androidx.activity.result.contract.ActivityResultContracts$RequestMultiplePermissions: java.util.Map parseResult(int,android.content.Intent)&gt;" instructionId="10" key="androidx.activity.result.contract.extra.PERMISSION_GRANT_RESULTS" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;androidx.activity.result.contract.ActivityResultContracts$RequestMultiplePermissions: java.util.Map parseResult(int,android.content.Intent)&gt;"/>
+      <methodtrace value="&lt;androidx.activity.result.contract.ActivityResultContracts$RequestMultiplePermissions: java.util.Map parseResult(int,android.content.Intent)&gt;,java.util.Map parseResult(int,android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;androidx.activity.result.contract.ActivityResultContracts$RequestMultiplePermissions: java.util.Map parseResult(int,android.content.Intent)&gt;"/>
+        <node method="ActivityResultContracts$RequestMultiplePermissions parseResult" type="ReceiveIntentFromParatMethod" unit="$r1 := @parameter1: android.content.Intent"/>
+        <node method="ActivityResultContracts$RequestMultiplePermissions parseResult" type="GetIntentExtra" unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String[] getStringArrayExtra(java.lang.String)&gt;(&quot;androidx.activity.result.contract.extra.PERMISSIONS&quot;)"/>
+        <node method="ActivityResultContracts$RequestMultiplePermissions parseResult" type="GetIntentExtra" unit="$r4 = virtualinvoke $r1.&lt;android.content.Intent: int[] getIntArrayExtra(java.lang.String)&gt;(&quot;androidx.activity.result.contract.extra.PERMISSION_GRANT_RESULTS&quot;)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="androidx.core.app.TaskStackBuilder">
+    <intentSummary>
+      <source name="androidx.core.app.TaskStackBuilder"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_NEW_TASK ">
+        <info unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)" methodSig="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;" instructionId="24"/>
+      </sendICCInfo>
+      <method value="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268435456)"/>
+        <node method="TaskStackBuilder startActivities" type="SendIntent2ICC" unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.core.app.TaskStackBuilder"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.core.app.TaskStackBuilder"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.MainActivity">
+    <intentSummary>
+      <source name="com.example.notificationtest.MainActivity"/>
+      <destination name="interICC_android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS, "/>
+      <sendICCInfo action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS">
+        <info unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)" methodSig="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;" instructionId="9"/>
+      </sendICCInfo>
+      <method value="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;,void requestPermissionListenser()"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;"/>
+        <node method="MainActivity requestPermissionListenser" type="CreateMethod" unit="$r3 = new android.content.Intent"/>
+        <node method="MainActivity requestPermissionListenser" type="SetAttribute" unit="specialinvoke $r3.&lt;android.content.Intent: void &lt;init&gt;(java.lang.String)&gt;(&quot;android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS&quot;)"/>
+        <node method="MainActivity requestPermissionListenser" type="SendIntent2ICC" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.MainActivity">
+    <intentSummary>
+      <source name="com.example.notificationtest.MainActivity"/>
+      <destination name="interICC_android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS, "/>
+      <sendICCInfo action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS">
+        <info unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)" methodSig="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;" instructionId="9"/>
+      </sendICCInfo>
+      <method value="&lt;com.example.notificationtest.MainActivity: void access$000(com.example.notificationtest.MainActivity)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MainActivity: void access$000(com.example.notificationtest.MainActivity)&gt;,&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;,void requestPermissionListenser()"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MainActivity: void access$000(com.example.notificationtest.MainActivity)&gt;"/>
+        <node method="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;"/>
+        <node method="MainActivity requestPermissionListenser" type="CreateMethod" unit="$r3 = new android.content.Intent"/>
+        <node method="MainActivity requestPermissionListenser" type="SetAttribute" unit="specialinvoke $r3.&lt;android.content.Intent: void &lt;init&gt;(java.lang.String)&gt;(&quot;android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS&quot;)"/>
+        <node method="MainActivity requestPermissionListenser" type="SendIntent2ICC" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.MainActivity">
+    <intentSummary>
+      <source name="com.example.notificationtest.MainActivity"/>
+      <destination name="interICC_android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS, "/>
+      <sendICCInfo action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS">
+        <info unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)" methodSig="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;" instructionId="9"/>
+      </sendICCInfo>
+      <method value="&lt;com.example.notificationtest.MainActivity$1: void onClick(android.view.View)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MainActivity$1: void onClick(android.view.View)&gt;,&lt;com.example.notificationtest.MainActivity: void access$000(com.example.notificationtest.MainActivity)&gt;,&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;,void requestPermissionListenser()"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MainActivity$1: void onClick(android.view.View)&gt;"/>
+        <node method="&lt;com.example.notificationtest.MainActivity: void access$000(com.example.notificationtest.MainActivity)&gt;"/>
+        <node method="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;"/>
+        <node method="MainActivity requestPermissionListenser" type="CreateMethod" unit="$r3 = new android.content.Intent"/>
+        <node method="MainActivity requestPermissionListenser" type="SetAttribute" unit="specialinvoke $r3.&lt;android.content.Intent: void &lt;init&gt;(java.lang.String)&gt;(&quot;android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS&quot;)"/>
+        <node method="MainActivity requestPermissionListenser" type="SendIntent2ICC" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="androidx.profileinstaller.ProfileInstallReceiver">
+    <intentSummary>
+      <source name="androidx.profileinstaller.ProfileInstallReceiver"/>
+      <receiveICCInfo action="androidx.profileinstaller.action.SAVE_PROFILE, androidx.profileinstaller.action.INSTALL_PROFILE, androidx.profileinstaller.action.SKIP_FILE, androidx.profileinstaller.action.BENCHMARK_OPERATION" extras="String-EXTRA_SKIP_FILE_OPERATION">
+        <info unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getAction()&gt;()" methodSig="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="6" key="action" value="[androidx.profileinstaller.action.SAVE_PROFILE, androidx.profileinstaller.action.INSTALL_PROFILE, androidx.profileinstaller.action.SKIP_FILE, androidx.profileinstaller.action.BENCHMARK_OPERATION]"/>
+        <info unit="$r3 = virtualinvoke $r7.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;EXTRA_SKIP_FILE_OPERATION&quot;)" methodSig="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="21" key="EXTRA_SKIP_FILE_OPERATION" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+      <methodtrace value="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;,void onReceive(android.content.Context,android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+        <node method="ProfileInstallReceiver onReceive" type="ReceiveIntentFromRetValue" unit="$r2 = virtualinvoke r0.&lt;androidx.profileinstaller.ProfileInstallReceiver: android.content.Intent getIntent()&gt;()"/>
+        <node method="ProfileInstallReceiver onReceive" type="GetAttribute" unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getAction()&gt;()"/>
+        <node method="ProfileInstallReceiver onReceive" type="GetIntentExtra" unit="$r7 = virtualinvoke $r2.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;()"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.profileinstaller.ProfileInstallReceiver"/>
+      <receiveICCInfo action="androidx.profileinstaller.action.SAVE_PROFILE, androidx.profileinstaller.action.INSTALL_PROFILE, androidx.profileinstaller.action.SKIP_FILE, androidx.profileinstaller.action.BENCHMARK_OPERATION">
+        <info unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getAction()&gt;()" methodSig="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="6" key="action" value="[androidx.profileinstaller.action.SAVE_PROFILE, androidx.profileinstaller.action.INSTALL_PROFILE, androidx.profileinstaller.action.SKIP_FILE, androidx.profileinstaller.action.BENCHMARK_OPERATION]"/>
+      </receiveICCInfo>
+      <method value="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+      <methodtrace value="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;,void onReceive(android.content.Context,android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+        <node method="ProfileInstallReceiver onReceive" type="ReceiveIntentFromRetValue" unit="$r2 = virtualinvoke r0.&lt;androidx.profileinstaller.ProfileInstallReceiver: android.content.Intent getIntent()&gt;()"/>
+        <node method="ProfileInstallReceiver onReceive" type="GetAttribute" unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getAction()&gt;()"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.profileinstaller.ProfileInstallReceiver"/>
+      <receiveICCInfo action="androidx.profileinstaller.action.SAVE_PROFILE, androidx.profileinstaller.action.INSTALL_PROFILE, androidx.profileinstaller.action.SKIP_FILE, androidx.profileinstaller.action.BENCHMARK_OPERATION" extras="String-EXTRA_BENCHMARK_OPERATION">
+        <info unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getAction()&gt;()" methodSig="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="6" key="action" value="[androidx.profileinstaller.action.SAVE_PROFILE, androidx.profileinstaller.action.INSTALL_PROFILE, androidx.profileinstaller.action.SKIP_FILE, androidx.profileinstaller.action.BENCHMARK_OPERATION]"/>
+        <info unit="$r3 = virtualinvoke $r7.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;(&quot;EXTRA_BENCHMARK_OPERATION&quot;)" methodSig="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;" instructionId="52" key="EXTRA_BENCHMARK_OPERATION" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+      <methodtrace value="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;,void onReceive(android.content.Context,android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;androidx.profileinstaller.ProfileInstallReceiver: void onReceive(android.content.Context,android.content.Intent)&gt;"/>
+        <node method="ProfileInstallReceiver onReceive" type="ReceiveIntentFromRetValue" unit="$r2 = virtualinvoke r0.&lt;androidx.profileinstaller.ProfileInstallReceiver: android.content.Intent getIntent()&gt;()"/>
+        <node method="ProfileInstallReceiver onReceive" type="GetAttribute" unit="$r3 = virtualinvoke $r2.&lt;android.content.Intent: java.lang.String getAction()&gt;()"/>
+        <node method="ProfileInstallReceiver onReceive" type="GetIntentExtra" unit="$r7 = virtualinvoke $r2.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;()"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="androidx.core.app.TaskStackBuilder">
+    <intentSummary>
+      <source name="androidx.core.app.TaskStackBuilder"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_NEW_TASK ">
+        <info unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)" methodSig="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;" instructionId="24"/>
+      </sendICCInfo>
+      <method value="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268435456)"/>
+        <node method="TaskStackBuilder startActivities" type="SendIntent2ICC" unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.core.app.TaskStackBuilder"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.core.app.TaskStackBuilder"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="androidx.appcompat.app.AppCompatActivity">
+    <intentSummary>
+      <source name="androidx.appcompat.app.AppCompatActivity"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_NEW_TASK ">
+        <info unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)" methodSig="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;" instructionId="24"/>
+      </sendICCInfo>
+      <method value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+      <methodtrace value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268435456)"/>
+        <node method="TaskStackBuilder startActivities" type="SendIntent2ICC" unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.appcompat.app.AppCompatActivity"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+      <methodtrace value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.appcompat.app.AppCompatActivity"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+      <methodtrace value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.MyNotification">
+    <intentSummary>
+      <source name="com.example.notificationtest.MyNotification"/>
+      <receiveICCInfo extras="String-package,String-Text">
+        <info unit="$r2 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)" methodSig="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;" instructionId="2" key="package" value="null"/>
+        <info unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)" methodSig="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;" instructionId="3" key="Text" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;,&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;,void receivetest(android.content.Intent)"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;"/>
+        <node method="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;"/>
+        <node method="intenttest receivetest" type="ReceiveIntentFromParatMethod" unit="$r1 := @parameter0: android.content.Intent"/>
+        <node method="intenttest receivetest" type="GetIntentExtra" unit="$r2 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)"/>
+        <node method="intenttest receivetest" type="GetIntentExtra" unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="com.example.notificationtest.MyNotification"/>
+      <destination name="com.example.notificationtest.MyBroadcastReceiver"/>
+      <sendICCInfo action="NOTIFICATION_SENDBROADCAST" extras="String-Tile,String-package,String-Text">
+        <info unit="virtualinvoke r0.&lt;com.example.notificationtest.MyNotification: void sendBroadcast(android.content.Intent)&gt;($r10)" methodSig="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;" instructionId="33"/>
+      </sendICCInfo>
+      <receiveICCInfo extras="String-package,String-Text">
+        <info unit="$r2 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)" methodSig="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;" instructionId="2" key="package" value="null"/>
+        <info unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)" methodSig="&lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;" instructionId="3" key="Text" value="null"/>
+      </receiveICCInfo>
+      <method value="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;,void onNotificationPosted(android.service.notification.StatusBarNotification), &lt;com.example.notificationtest.intenttest: void receivetest(android.content.Intent)&gt;"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;"/>
+        <node method="MyNotification onNotificationPosted" type="CreateMethod" unit="$r10 = new android.content.Intent"/>
+        <node method="MyNotification onNotificationPosted" type="InitIntent" unit="specialinvoke $r10.&lt;android.content.Intent: void &lt;init&gt;()&gt;()"/>
+        <node method="MyNotification onNotificationPosted" type="SetAttribute" unit="virtualinvoke $r10.&lt;android.content.Intent: android.content.Intent setAction(java.lang.String)&gt;(&quot;NOTIFICATION_SENDBROADCAST&quot;)"/>
+        <node method="MyNotification onNotificationPosted" type="SetIntentExtra" unit="virtualinvoke $r10.&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;(&quot;package&quot;, $r3)"/>
+        <node method="MyNotification onNotificationPosted" type="SetIntentExtra" unit="virtualinvoke $r10.&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;(&quot;Tile&quot;, $r6)"/>
+        <node method="MyNotification onNotificationPosted" type="SetIntentExtra" unit="virtualinvoke $r10.&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;(&quot;Text&quot;, $r7)"/>
+        <node method="MyNotification onNotificationPosted" type="SendIntent2ICC" unit="virtualinvoke r0.&lt;com.example.notificationtest.MyNotification: void sendBroadcast(android.content.Intent)&gt;($r10)"/>
+        <node method="intenttest receivetest" type="ReceiveIntentFromParatMethod" unit="$r1 := @parameter0: android.content.Intent"/>
+        <node method="intenttest receivetest" type="GetIntentExtra" unit="$r2 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;package&quot;)"/>
+        <node method="intenttest receivetest" type="GetIntentExtra" unit="$r3 = virtualinvoke $r1.&lt;android.content.Intent: java.lang.String getStringExtra(java.lang.String)&gt;(&quot;Text&quot;)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+  <Component source="androidx.appcompat.app.AppCompatActivity">
+    <intentSummary>
+      <source name="androidx.appcompat.app.AppCompatActivity"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_NEW_TASK ">
+        <info unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)" methodSig="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;" instructionId="24"/>
+      </sendICCInfo>
+      <method value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;"/>
+      <methodtrace value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;,&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;"/>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268435456)"/>
+        <node method="TaskStackBuilder startActivities" type="SendIntent2ICC" unit="virtualinvoke $r7.&lt;android.content.Context: void startActivity(android.content.Intent)&gt;($r8)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.appcompat.app.AppCompatActivity"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;"/>
+      <methodtrace value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;,&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;"/>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+    <intentSummary>
+      <source name="androidx.appcompat.app.AppCompatActivity"/>
+      <sendICCInfo flags="FLAG_ACTIVITY_TASK_ON_HOME FLAG_ACTIVITY_CLEAR_TASK FLAG_ACTIVITY_NEW_TASK "/>
+      <method value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;"/>
+      <methodtrace value="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;,&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;,&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;,void startActivities(android.os.Bundle), &lt;androidx.core.content.ContextCompat: boolean startActivities(android.content.Context,android.content.Intent[],android.os.Bundle)&gt;"/>
+      <nodes>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onMenuItemSelected(int,android.view.MenuItem)&gt;"/>
+        <node method="&lt;androidx.appcompat.app.AppCompatActivity: boolean onSupportNavigateUp()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities()&gt;"/>
+        <node method="&lt;androidx.core.app.TaskStackBuilder: void startActivities(android.os.Bundle)&gt;"/>
+        <node method="TaskStackBuilder startActivities" type="CreateMethod" unit="$r8 = new android.content.Intent"/>
+        <node method="TaskStackBuilder startActivities" type="InitIntent" unit="specialinvoke $r8.&lt;android.content.Intent: void &lt;init&gt;(android.content.Intent)&gt;($r6)"/>
+        <node method="TaskStackBuilder startActivities" type="SetAttribute" unit="$r5 = virtualinvoke $r8.&lt;android.content.Intent: android.content.Intent addFlags(int)&gt;(268484608)"/>
+      </nodes>
+    </intentSummary>
+  </Component>
+</root>

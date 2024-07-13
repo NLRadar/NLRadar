@@ -1,0 +1,28 @@
+digraph G {
+subgraph cluster_legend{ 
+bgcolor=mintcream;
+_Activity[color = red];
+_Service[color = royalblue];
+_Provider[color = violet];
+_Reciever[color = peru];
+_Fragment[color = teal];
+_Main[style=filled, fillcolor=orange, color = mintcream];
+_Exported[style=filled, fillcolor=lightpink, color = mintcream];
+_Main -> _Exported -> _Activity -> _Service -> _Reciever -> _Provider -> _Fragment; 
+}
+MainActivity[style=filled, fillcolor=orange, color = red];
+MyNotification[style=filled, fillcolor=pink, color = royalblue];
+AppCompatDelegateImpl[color = peru];
+MyBroadcastReceiver[style=filled, fillcolor=pink, color = peru];
+MaterialTimePicker[color = teal];
+AppCompatDialogFragment[color = teal];
+BottomSheetDialogFragment[color = teal];
+MaterialTextInputPicker[color = teal];
+MaterialDatePicker[color = teal];
+Fragment[color = teal];
+ListFragment[color = teal];
+MaterialCalendar[color = teal];
+PickerFragment[color = teal];
+DialogFragment[color = teal];
+ReportFragment[color = teal];
+}

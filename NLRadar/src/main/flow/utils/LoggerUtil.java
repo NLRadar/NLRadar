@@ -1,9 +1,6 @@
 package utils;
 
-import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,15 +12,14 @@ public class LoggerUtil{
 
     static {
         try {
-            //change your dir
-            String logFilePath = "/Output/log.txt";
-                        
-            FileHandler fileHandler = new FileHandler(logFilePath, true);          
-
+            String logFilePath = "Output/log.txt";
+            
+            FileHandler fileHandler = new FileHandler(logFilePath, true);
+            
             fileHandler.setFormatter(new SimpleFormatter());
 
             logger = Logger.getLogger(LoggerUtil.class.getName());
-
+            
             logger.addHandler(fileHandler);
         } catch (IOException e) {
             e.printStackTrace();

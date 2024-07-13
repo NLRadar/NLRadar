@@ -23,6 +23,7 @@ Where:
   - `android.jar`: Dependency required for the analysis
   - `Effectiveness.html`: A refined version of the Effectiveness Assessment results
   - `ApkInfo`: The Package Name and SHA256 information of the test dataset
+  - `NLRadar/LLM_Evaluation`: Example Prompt of LLM-based Security Evaluation
 
 ## Effectiveness Assess
 

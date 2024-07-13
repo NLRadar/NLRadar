@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <source name="com.example.notificationtest.MainActivity" type="Activity">
+    <destination ICCType="implicit" name="android.settings.CHANNEL_NOTIFICATION_SETTINGS, " edgeType="Act2Class" method="&lt;com.example.notificationtest.MainActivity: void createNotificationChannel()&gt;" instructionId="15" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r4)" action="android.settings.CHANNEL_NOTIFICATION_SETTINGS" extras="String-android.provider.extra.APP_PACKAGE,String-android.provider.extra.CHANNEL_ID" flags=""/>
+    <destination ICCType="implicit" name="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS, " edgeType="Act2Class" method="&lt;com.example.notificationtest.MainActivity: void requestPermissionListenser()&gt;" instructionId="9" unit="virtualinvoke r0.&lt;com.example.notificationtest.MainActivity: void startActivity(android.content.Intent)&gt;($r3)" action="android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS" extras="" flags=""/>
+  </source>
+  <source name="com.example.notificationtest.MyBroadcastReceiver" type="Receiver"/>
+  <source name="com.example.notificationtest.MyNotification" type="Service">
+    <destination ICCType="implicit" name="com.example.notificationtest.MyBroadcastReceiver" desType="Receiver" edgeType="NonAct2NonAct" method="&lt;com.example.notificationtest.MyNotification: void onNotificationPosted(android.service.notification.StatusBarNotification)&gt;" instructionId="33" unit="virtualinvoke r0.&lt;com.example.notificationtest.MyNotification: void sendBroadcast(android.content.Intent)&gt;($r10)" action="NOTIFICATION_SENDBROADCAST" extras="String-Tile,String-package,String-Text" flags=""/>
+  </source>
+</root>

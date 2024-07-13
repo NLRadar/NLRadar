@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+  <Component source="androidx.lifecycle.ReportFragment$Companion">
+    <FragmentSummary>
+      <method value="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+      <methodtrace value="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;,void injectIfNeededIn(android.app.Activity), &lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;"/>
+      <source name="androidx.lifecycle.ReportFragment"/>
+      <nodes>
+        <node method="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="Activity getFragmentManager" type="CreateMethod" unit="retFragMan = new android.app.FragmentManager"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+      </nodes>
+    </FragmentSummary>
+  </Component>
+  <Component source="androidx.lifecycle.ReportFragment">
+    <FragmentSummary>
+      <method value="&lt;androidx.lifecycle.ReportFragment: void injectIfNeededIn(android.app.Activity)&gt;"/>
+      <methodtrace value="&lt;androidx.lifecycle.ReportFragment: void injectIfNeededIn(android.app.Activity)&gt;,void injectIfNeededIn(android.app.Activity), &lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+      <source name="androidx.lifecycle.ReportFragment"/>
+      <nodes>
+        <node method="&lt;androidx.lifecycle.ReportFragment: void injectIfNeededIn(android.app.Activity)&gt;"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+        <node method="Activity getFragmentManager" type="CreateMethod" unit="retFragMan = new android.app.FragmentManager"/>
+      </nodes>
+    </FragmentSummary>
+  </Component>
+  <Component source="androidx.core.app.ComponentActivity">
+    <FragmentSummary>
+      <method value="&lt;androidx.core.app.ComponentActivity: void onCreate(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;androidx.core.app.ComponentActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;,void injectIfNeededIn(android.app.Activity), &lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;"/>
+      <source name="androidx.core.app.ComponentActivity"/>
+      <nodes>
+        <node method="&lt;androidx.core.app.ComponentActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="Activity getFragmentManager" type="CreateMethod" unit="retFragMan = new android.app.FragmentManager"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+      </nodes>
+    </FragmentSummary>
+  </Component>
+  <Component source="androidx.activity.ComponentActivity">
+    <FragmentSummary>
+      <method value="&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;,void injectIfNeededIn(android.app.Activity), &lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;"/>
+      <source name="androidx.activity.ComponentActivity"/>
+      <nodes>
+        <node method="&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="Activity getFragmentManager" type="CreateMethod" unit="retFragMan = new android.app.FragmentManager"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+      </nodes>
+    </FragmentSummary>
+  </Component>
+  <Component source="androidx.fragment.app.FragmentActivity">
+    <FragmentSummary>
+      <method value="&lt;androidx.fragment.app.FragmentActivity: void onCreate(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;androidx.fragment.app.FragmentActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;,void injectIfNeededIn(android.app.Activity), &lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;"/>
+      <source name="androidx.fragment.app.FragmentActivity"/>
+      <nodes>
+        <node method="&lt;androidx.fragment.app.FragmentActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="Activity getFragmentManager" type="CreateMethod" unit="retFragMan = new android.app.FragmentManager"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+      </nodes>
+    </FragmentSummary>
+  </Component>
+  <Component source="com.example.notificationtest.MainActivity">
+    <FragmentSummary>
+      <method value="&lt;com.example.notificationtest.MainActivity: void onCreate(android.os.Bundle)&gt;"/>
+      <methodtrace value="&lt;com.example.notificationtest.MainActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.fragment.app.FragmentActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;,&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;,void injectIfNeededIn(android.app.Activity), &lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;"/>
+      <source name="com.example.notificationtest.MainActivity"/>
+      <nodes>
+        <node method="&lt;com.example.notificationtest.MainActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.fragment.app.FragmentActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.activity.ComponentActivity: void onCreate(android.os.Bundle)&gt;"/>
+        <node method="&lt;androidx.lifecycle.ReportFragment$Companion: void injectIfNeededIn(android.app.Activity)&gt;"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="ReceiveFromRetValue" unit="$r3 = virtualinvoke $r1.&lt;android.app.Activity: android.app.FragmentManager getFragmentManager()&gt;()"/>
+        <node method="Activity getFragmentManager" type="CreateMethod" unit="retFragMan = new android.app.FragmentManager"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="beginTransaction" unit="$r5 = virtualinvoke $r3.&lt;android.app.FragmentManager: android.app.FragmentTransaction beginTransaction()&gt;()"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="addFunction" unit="$r5 = virtualinvoke $r5.&lt;android.app.FragmentTransaction: android.app.FragmentTransaction add(android.app.Fragment,java.lang.String)&gt;($r4, &quot;androidx.lifecycle.LifecycleDispatcher.report_fragment_tag&quot;)"/>
+        <node method="ReportFragment$Companion injectIfNeededIn" type="commit" unit="virtualinvoke $r5.&lt;android.app.FragmentTransaction: int commit()&gt;()"/>
+      </nodes>
+    </FragmentSummary>
+  </Component>
+</root>

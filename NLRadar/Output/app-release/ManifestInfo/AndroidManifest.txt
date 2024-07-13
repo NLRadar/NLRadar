@@ -1,0 +1,89 @@
+manifest
+- compileSdkVersionCodename: 14
+- package: com.example.notificationtest
+- platformBuildVersionName: 14
+- compileSdkVersion: 34
+- versionName: 1.0
+- platformBuildVersionCode: 34
+- versionCode: 1
+	uses-sdk
+	- minSdkVersion: 24
+	- targetSdkVersion: 33
+	uses-permission
+	- name: android.permission.POST_NOTIFICATIONS
+	uses-permission
+	- name: android.permission.SYSTEM_ALERT_WINDOW
+	permission
+	- name: com.example.notificationtest.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+	- protectionLevel: 2
+	uses-permission
+	- name: com.example.notificationtest.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+	application
+	- dataExtractionRules: 2131886081
+	- supportsRtl: true
+	- appComponentFactory: androidx.core.app.CoreComponentFactory
+	- allowBackup: true
+	- extractNativeLibs: false
+	- fullBackupContent: 2131886080
+	- icon: 2131558400
+	- theme: 2131755627
+	- label: 2131689500
+		activity
+		- exported: false
+		- name: com.example.notificationtest.DisplayActivity
+		- theme: 2131755627
+		- label: 2131689651
+		activity
+		- exported: true
+		- name: com.example.notificationtest.MainActivity
+			intent-filter
+				action
+				- name: android.intent.action.MAIN
+				category
+				- name: android.intent.category.LAUNCHER
+		service
+		- exported: true
+		- name: com.example.notificationtest.MyNotification
+		- permission: android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+		- label: NLS Testing
+		- enabled: true
+			intent-filter
+				action
+				- name: android.service.notification.NotificationListenerService
+		receiver
+		- exported: true
+		- name: com.example.notificationtest.MyBroadcastReceiver
+			intent-filter
+				action
+				- name: NOTIFICATION_SENDBROADCAST
+		provider
+		- exported: false
+		- name: androidx.startup.InitializationProvider
+		- authorities: com.example.notificationtest.androidx-startup
+			meta-data
+			- name: androidx.emoji2.text.EmojiCompatInitializer
+			- value: androidx.startup
+			meta-data
+			- name: androidx.lifecycle.ProcessLifecycleInitializer
+			- value: androidx.startup
+			meta-data
+			- name: androidx.profileinstaller.ProfileInstallerInitializer
+			- value: androidx.startup
+		receiver
+		- exported: true
+		- name: androidx.profileinstaller.ProfileInstallReceiver
+		- permission: android.permission.DUMP
+		- enabled: true
+		- directBootAware: false
+			intent-filter
+				action
+				- name: androidx.profileinstaller.action.INSTALL_PROFILE
+			intent-filter
+				action
+				- name: androidx.profileinstaller.action.SKIP_FILE
+			intent-filter
+				action
+				- name: androidx.profileinstaller.action.SAVE_PROFILE
+			intent-filter
+				action
+				- name: androidx.profileinstaller.action.BENCHMARK_OPERATION

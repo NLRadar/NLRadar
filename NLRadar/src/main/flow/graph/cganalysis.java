@@ -1,51 +1,47 @@
 package graph;
-import dataStructure.GlobalValue;
-import dataStructure.locationValue;
-import dataflow.LocalVariableAnalysis;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.w3c.dom.Element;
+
 import dataStructure.FunctionTaintInfo;
+import dataStructure.GlobalValue;
 import dataStructure.MyEdge;
+import dataStructure.locationValue;
 import dataflow.FunctionTransferValue;
+import dataflow.LocalVariableAnalysis;
 import function.InfoPrint;
-import function.broadcastconnect;
-import soot.JastAddJ.Block;
+import polyglot.types.reflect.Constant;
+import soot.Body;
+import soot.Local;
+import soot.Scene;
+import soot.SootClass;
+import soot.SootMethod;
+import soot.Unit;
+import soot.Value;
+import soot.ValueBox;
 import soot.jimple.AssignStmt;
 import soot.jimple.FieldRef;
 import soot.jimple.InstanceFieldRef;
 import soot.jimple.InvokeExpr;
 import soot.jimple.InvokeStmt;
-import soot.jimple.NewExpr;
 import soot.jimple.ParameterRef;
 import soot.jimple.SpecialInvokeExpr;
-import soot.jimple.toolkits.callgraph.CallGraph;
-import soot.util.Chain;
-import soot.util.Cons;
 import soot.jimple.Stmt;
 import soot.jimple.StringConstant;
 import soot.jimple.VirtualInvokeExpr;
 import soot.jimple.internal.JInvokeStmt;
-import soot.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.HashSet;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
-
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.s;
-
-import soot.jimple.toolkits.callgraph.Edge;
-import soot.toolkits.graph.ExceptionalUnitGraph;
-
-import graph.actanalysis;
-import polyglot.ast.Special;
-import polyglot.types.reflect.Constant;
+import soot.jimple.toolkits.callgraph.CallGraph;
+import soot.util.Chain;
+import utils.ReadICCBot;
 
 
 class sharedpreferenceinfo {
@@ -92,9 +88,9 @@ class sharedpreferenceinfo {
 public class cganalysis {
 
     private static List<SootMethod> sourmethodfound = new ArrayList<SootMethod>();
-
+    
     private static List<locationValue> registerReceiverStmtList = new ArrayList<>();
-
+    
     private static List<locationValue> sharedpreferenceStmtList = new ArrayList<>();
     private static List<locationValue> threadClassList = new ArrayList<>();
     private static List<locationValue> AsyncTaskList = new ArrayList<>();
@@ -102,7 +98,7 @@ public class cganalysis {
     private static List<locationValue> databaseList = new ArrayList<>();
     private static List<locationValue> fileopList = new ArrayList<>();
     private static HashMap<FunctionTaintInfo, HashSet<FunctionTaintInfo>> methodMap = new HashMap<>();
-
+    
     private static HashSet<FunctionTaintInfo> visitedmethod = new HashSet<FunctionTaintInfo>(); 
     private static InfoPrint infoPrint = new InfoPrint();
     private static String cgname = null;
@@ -110,13 +106,31 @@ public class cganalysis {
     private static String jimplename = null;
     private static String apkname = null;
     private static String errorname = null;
-    
+    private static String ICCbotname = null;
+    private static ReadICCBot readICCBot = new ReadICCBot();
+
+    public static boolean isMethodOverridden(SootClass sootClass, SootClass superClass, SootMethod methodToCheck) {
+        while (superClass != null) {
+            for (SootMethod superMethod : superClass.getMethods()) {
+                if (superMethod.getSubSignature().equals(methodToCheck.getSubSignature())) {
+                    return true;
+                }
+            }
+            superClass = superClass.getSuperclass();
+        }
+        return false;
+    }
+
+
     public static void constructflow(String apkname1){
         apkname = apkname1;
-        cgname = GlobalValue.cg_Path+apkname1+".txt";
-        findingname = GlobalValue.finding_Path+apkname1+".txt";
-        jimplename = GlobalValue.jimple_Path+apkname1+".txt";
-        errorname = GlobalValue.error_Path+apkname1+".txt";
+        cgname = "Output/cg/"+apkname1+".txt";
+        findingname = "Output/finding/"+apkname1+".txt";
+        jimplename = "Output/jimple/"+apkname1+".txt";
+        errorname = "Output/error/"+apkname1+".txt";
+        ICCbotname = GlobalValue.ICCBOT_OUTPUT_PATH + apkname1.substring(0,apkname1.length()-9);
+        List<Element> elements = readICCBot.readIntentSummaryModel(ICCbotname,"CTGResult\\ICCBotResult.xml");
+
         try{
             for(Iterator<SootClass> iter = Scene.v().getClasses().snapshotIterator(); iter.hasNext();){
                 SootClass sootclass = iter.next();
@@ -125,9 +139,13 @@ public class cganalysis {
                     SootMethod sootmethod = sootMethods.get(i);
                     if(sootmethod.isConcrete()){
                         if(GlobalValue.SourMethods.contains(sootmethod.getSignature())||GlobalValue.SourMethods.contains(sootmethod.getName())){
+                            SootClass superClass = sootclass.getSuperclass();
+                            boolean isOverridden = isMethodOverridden(sootclass, superClass, sootmethod);
                             System.out.println("SourMethod: "+sootmethod.getSignature());
-                            //System.out.println("SourMethod: "+sootmethod.getActiveBody());
-                            sourmethodfound.add(sootmethod);
+                            
+                            if( isOverridden == true){
+                                sourmethodfound.add(sootmethod);
+                            }
                         }
                         Body body = sootmethod.retrieveActiveBody();
                         if(body == null){
@@ -138,22 +156,26 @@ public class cganalysis {
                                 if (((AssignStmt) unit).getRightOp() instanceof InvokeExpr){
                                     if(GlobalValue.SourMethods.contains(((InvokeExpr) ((AssignStmt) unit).getRightOp()).getMethodRef().getSignature())||GlobalValue.SourMethods.contains(((InvokeExpr) ((AssignStmt) unit).getRightOp()).getMethodRef().getName())){
                                         System.out.println("Found one source: " + unit.toString() + " in " + sootmethod.getSignature());
-                                        //去重添加
+                                        
                                         if(!sourmethodfound.contains(sootmethod)){
                                             sourmethodfound.add(sootmethod);
                                         }
                                     }
+
                                 }
                             }
-
                             Stmt stmt = (Stmt) unit;
-                            if(stmt.containsInvokeExpr() && stmt.getInvokeExpr().getMethod().getName().equals("registerReceiver")){
-                                locationValue locationvalue = new locationValue(sootmethod,body,stmt);
-    
-                                registerReceiverStmtList.add(locationvalue);
+                            
+                            if(stmt.containsInvokeExpr()){
+                                InvokeExpr invokeExpr = stmt.getInvokeExpr();
+                                SootMethod method = invokeExpr.getMethod();
+                                if(invokeExpr.getMethod().getName().equals("registerReceiver")){
+                                    locationValue locationvalue = new locationValue(sootmethod,body,stmt);
+                                    registerReceiverStmtList.add(locationvalue);
+                                }
                             }
                             
-
+                            
                             if(stmt.containsInvokeExpr() && (stmt.getInvokeExpr().getMethod().getName().equals("getSharedPreferences")
                             ||stmt.getInvokeExpr().getMethod().equals("<android.preference.PreferenceManager: android.content.SharedPreferences getDefaultSharedPreferences(android.content.Context)>")
                             ||stmt.getInvokeExpr().getMethod().equals("<android.content.SharedPreferences: java.lang.String getString(java.lang.String,java.lang.String)>")
@@ -162,7 +184,6 @@ public class cganalysis {
                                 sharedpreferenceStmtList.add(locationvalue);
                             }
     
-
                             if(stmt.containsInvokeExpr()&&stmt.getInvokeExpr().getMethod().getSignature().equals("<java.lang.Thread: void <init>()>")){
                                 System.out.println("Found one thread: " + unit.toString() + " in " + sootmethod.getSignature());
                                 locationValue locationvalue = new locationValue(sootmethod,body,stmt);
@@ -177,7 +198,6 @@ public class cganalysis {
                                 AsyncTaskList.add(locationvalue);
                             }
 
-
                             if(stmt.containsInvokeExpr()&&stmt.getInvokeExpr().getMethod().getSignature().equals("<android.database.sqlite.SQLiteDatabase: android.database.Cursor query(java.lang.String,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,java.lang.String,java.lang.String)>")){
                                 System.out.println("Found one database: " + unit.toString() + " in " + sootmethod.getSignature());
                                 locationValue locationvalue = new locationValue(sootmethod,body,stmt);
@@ -185,13 +205,13 @@ public class cganalysis {
                             }
 
 
+                            //read
                             if(stmt.containsInvokeExpr()&&(stmt.getInvokeExpr().getMethod().getSignature().equals("<java.io.BufferedReader: java.lang.String readLine()>")||
                             stmt.getInvokeExpr().getMethod().getSignature().equals("<java.io.BufferedReader: int read()>") || 
                             stmt.getInvokeExpr().getMethod().getSignature().equals("<java.io.FileInputStream: int read()>")||
                             stmt.getInvokeExpr().getMethod().getSignature().equals("<java.io.FileInputStream: int read(byte[])>") || 
                             stmt.getInvokeExpr().getMethod().getSignature().equals("<java.io.FileInputStream: int read(byte[],int,int)>"))){
                                 System.out.println("Found one fileop: " + unit.toString() + " in " + sootmethod.getSignature());
-                            
                                 locationValue locationvalue = new locationValue(sootmethod,body,stmt);
                                 fileopList.add(locationvalue);
                             }
@@ -217,9 +237,7 @@ public class cganalysis {
             infoPrint.writeToFile(errorname,"constructflow error\n");
             infoPrint.writeToFile(errorname,e.toString()+"\n");
         }
-
         System.out.println("sourmethodfound size: "+sourmethodfound.size());
-
         if(sourmethodfound.size()==0){
             System.out.println("No sourmethod found");
             infoPrint.writeToFile(jimplename,"No sourmethod found\n");
@@ -229,7 +247,7 @@ public class cganalysis {
             System.out.println("trace: "+sootmethod.getSignature());
             infoPrint.writeToFile(cgname,"trace: "+sootmethod.getSignature()+"\n");
             printsourmethodjimple(sootmethod);
-            trace(sootmethod);
+            trace(sootmethod,elements);
         }
     }
 
@@ -244,15 +262,21 @@ public class cganalysis {
         }
     }
 
-    public static void trace(SootMethod sootmethod){
+    public static void trace(SootMethod sootmethod,List<Element> elements){
         Queue<MyEdge> queue = new LinkedList<MyEdge>();
         HashSet<String> handled = new HashSet<String>();
         HashSet<String> backtracehandled = new HashSet<String>();
         methodMap.clear();
         visitedmethod.clear();
-        FunctionTaintInfo srcFunctionTaintInfo = new FunctionTaintInfo(sootmethod,1);
+        FunctionTaintInfo srcFunctionTaintInfo;
+        if(sootmethod.getName().equals("onNotificationPosted")||sootmethod.getName().equals("onNotificationRemoved")){
+            srcFunctionTaintInfo = new FunctionTaintInfo(sootmethod,1);
+        }
+        else{
+            srcFunctionTaintInfo = new FunctionTaintInfo(sootmethod);
+        }
+        
         System.out.println(sootmethod.getName());
-
         if(sootmethod.isConcrete()){
             Body body = sootmethod.retrieveActiveBody();
             for(Unit unit: body.getUnits()){
@@ -262,7 +286,7 @@ public class cganalysis {
                     Value leftValue = assignStmt.getLeftOp();
                     if(assignStmt.getRightOp() instanceof InvokeExpr){
                         InvokeExpr invokeExpr = (InvokeExpr) assignStmt.getRightOp();
-                        if(invokeExpr.getMethod().getSignature().equals("<android.service.notification.StatusBarNotification: android.app.Notification getNotification()>")){
+                        if(invokeExpr.getMethod().getSignature().equals("<android.service.notification.NotificationListenerService: android.service.notification.StatusBarNotification[] getActiveNotifications()>")){
                             Local leftLocal = (Local) leftValue;
                             srcFunctionTaintInfo.addTaintedLocal(leftLocal);
                         }
@@ -283,12 +307,11 @@ public class cganalysis {
 
         while (!queue.isEmpty()) {
             MyEdge curEdge = queue.poll();
-
             FunctionTaintInfo tgtMethodInfo = curEdge.getDgtFunctionTaintInfo();
-
             FunctionTaintInfo srcMethodInfo = curEdge.getSrcFunctionTaintInfo();
             SootMethod tgtMethod = tgtMethodInfo.getMethod();
             SootMethod srcMethod = srcMethodInfo.getMethod();
+            Stmt tgtstmt = (Stmt) curEdge.getSrcUnit();
             System.out.println("srcMethod: "+srcMethod.getSignature());
             System.out.println("tgtMethod: "+tgtMethod.getSignature());
             String curedgeString = srcMethod.getSignature()+"->"+tgtMethod.getSignature()+"from"+curEdge.getSrcUnit();
@@ -328,11 +351,51 @@ public class cganalysis {
                 }
             }
             
-
             if(!methodMap.containsKey(srcMethodInfo)){
                 methodMap.put(srcMethodInfo, new HashSet<>());
             }
             methodMap.get(srcMethodInfo).add(tgtMethodInfo);
+
+            //handle ICCBot
+            if(GlobalValue.ICCmethods.contains(tgtMethod.getName())){
+                System.out.println(tgtstmt.toString());
+                for(Element element: elements){
+                    String dstcompoent = readICCBot.findICCdst(element,tgtstmt.toString());
+                    String dstcompoentmethod = readICCBot.finddstmethod(element, dstcompoent);
+                    System.out.println(dstcompoent);
+                    System.out.println(dstcompoentmethod);
+                    SootMethod iccmethod = Scene.v().getMethod(dstcompoentmethod);
+                    Set <Local> icctaintedLocals = new HashSet<Local>();
+                    List <Local> iccreversetaintedLocals = new ArrayList<Local>();
+                    if(iccmethod.isConcrete()){
+                        if(tgtstmt instanceof InvokeExpr){
+                            InvokeExpr invokeExpr = (InvokeExpr) tgtstmt;
+                            for(Value value: invokeExpr.getArgs()){
+                                if(value instanceof Local){
+                                    iccreversetaintedLocals.add((Local) value);
+                                }
+                            }
+                        }
+                        List<String> taintunits = readICCBot.findNodes(element,dstcompoent);
+                        Body iccbody = iccmethod.retrieveActiveBody();
+                        for(Unit unit: iccbody.getUnits()){
+                            Stmt stmt = (Stmt) unit;
+                            if(taintunits.contains(stmt.toString())){
+                                if(stmt instanceof AssignStmt){
+                                    AssignStmt assignStmt = (AssignStmt) stmt;
+                                    Value leftValue = assignStmt.getLeftOp();
+                                    if(leftValue instanceof Local){
+                                        icctaintedLocals.add((Local) leftValue);
+                                    }
+                                }
+                            }
+                        }
+                        FunctionTaintInfo icctaintinfo = new FunctionTaintInfo(iccmethod,icctaintedLocals,iccreversetaintedLocals,tgtstmt);
+                        MyEdge newedge = new MyEdge(tgtMethodInfo,icctaintinfo,tgtstmt);
+                        queue.add(newedge);
+                    }
+                }
+            }
 
             if(tgtMethod.getSignature().equals("<android.content.ContextWrapper: void sendBroadcast(android.content.Intent)>")
             ||tgtMethod.getSignature().equals("<android.content.ContextWrapper: void sendBroadcast(android.content.Intent,java.lang.String)>")
@@ -345,45 +408,37 @@ public class cganalysis {
                 Unit unit = curEdge.getSrcUnit();
                 Stmt stmt = (Stmt) unit;
                 System.out.println("sendbroadcast: "+stmt);
-
                 if(stmt.containsInvokeExpr()){
                     Value intentValue = stmt.getInvokeExpr().getArg(0);
-
                     if(intentValue instanceof Local){
                         actions = findIntentAction((Local) intentValue,srcMethod.getActiveBody());
-
+                        
                     }
                     if(actions != null){
                         for(String action: actions){
-
+                            
                             receiverclass = findRecevierRegister(action);
-
+                            
                             if(receiverclass != null){
                                 for(String receiverClassName: receiverclass){
                                     if(receiverClassName != null){
-                                        try{
-                                            SootMethod onreceivemethod = Scene.v().getMethod("<" + receiverClassName + ": void onReceive(android.content.Context,android.content.Intent)>");
-                                            Set <Local> onreceivetaintedLocals = new HashSet<Local>();
-                                            List <Local> onreceivereversetaintedLocals = new ArrayList<Local>();
-                                            if(onreceivemethod.isConcrete()){
-                                                onreceivetaintedLocals.add(onreceivemethod.retrieveActiveBody().getParameterLocal(1));
-                                                onreceivereversetaintedLocals.add((Local) intentValue);
-                                                FunctionTaintInfo onreceivetaintinfo = new FunctionTaintInfo(onreceivemethod,onreceivetaintedLocals,onreceivereversetaintedLocals,stmt);
-                                                MyEdge newedge = new MyEdge(tgtMethodInfo,onreceivetaintinfo,stmt);
-                                                queue.add(newedge);
-                                            }
-                                        }catch(Exception e){
-                                            System.out.println("find onReceive error");
+                                        SootMethod onreceivemethod = Scene.v().getMethod("<" + receiverClassName + ": void onReceive(android.content.Context,android.content.Intent)>");
+                                        Set <Local> onreceivetaintedLocals = new HashSet<Local>();
+                                        List <Local> onreceivereversetaintedLocals = new ArrayList<Local>();
+                                        if(onreceivemethod.isConcrete()){
+                                            onreceivetaintedLocals.add(onreceivemethod.retrieveActiveBody().getParameterLocal(1));
+                                            onreceivereversetaintedLocals.add((Local) intentValue);
+                                            FunctionTaintInfo onreceivetaintinfo = new FunctionTaintInfo(onreceivemethod,onreceivetaintedLocals,onreceivereversetaintedLocals,stmt);
+                                            MyEdge newedge = new MyEdge(tgtMethodInfo,onreceivetaintinfo,stmt);
+                                            queue.add(newedge);
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                 
                 }
             }
-            //sharedpreference
 
             else if(tgtMethod.getSignature().equals("<android.content.ContextWrapper: android.content.SharedPreferences getSharedPreferences(java.lang.String,int)>")){
                 if(srcMethod.isConcrete()){
@@ -418,16 +473,12 @@ public class cganalysis {
             }
 
             
-
-            //multi-thread
             else if (tgtMethod.getName().equals("<init>")){
                 Boolean flag = false;
                 System.out.println("tgtMethod: "+tgtMethod.getSignature());
                 for(locationValue locationvalue : threadClassList){
                     if(locationvalue.getMethodClass().equals(tgtMethod.getDeclaringClass().getName())){
                         flag = true;
-                        //find run method
-                        //find the stmt of start function
                         String threadClass = tgtMethod.getDeclaringClass().getName();
                         try{
                             SootMethod runMethod = Scene.v().getMethod("<" + threadClass + ": void run()>");
@@ -451,7 +502,6 @@ public class cganalysis {
                             List<String> threadruntainted = new ArrayList<String>();
                             if(threadinitMethod.isConcrete()){
                                 Body threadinitbody = threadinitMethod.retrieveActiveBody();
-                                
                                 Set<Local> parameterLocals = new HashSet<Local>();
                                 for(Local local: threadinitbody.getParameterLocals()){
                                     parameterLocals.add(local);
@@ -503,7 +553,7 @@ public class cganalysis {
                                 Stmt stmt = (Stmt) unit;
                                 List<String> threadruntainted = new ArrayList<String>();
 
-                        
+                                
                                 for(Local local: tgtMethodInfo.getReverseTaintedLocals()){
                                     reversetaintedLocals.add(local);
                                 }
@@ -566,11 +616,10 @@ public class cganalysis {
                     if(invokeExpr instanceof VirtualInvokeExpr){
                         VirtualInvokeExpr virtualInvokeExpr = (VirtualInvokeExpr) invokeExpr;
                         Value baseClass = virtualInvokeExpr.getBase();
-                
                         baseClassName = baseClass.getType().toString();
                         System.out.println("baseClassName: "+baseClassName);
                     }
-                    for(locationValue locationvalue : AsyncTaskList){    
+                    for(locationValue locationvalue : AsyncTaskList){
                         if(locationvalue.getMethodClass().equals(baseClassName)){
                             try{
                                 SootMethod runMethod = Scene.v().getMethod("<" + baseClassName + ": java.lang.Object doInBackground(java.lang.Object[])>");
@@ -619,7 +668,6 @@ public class cganalysis {
 
             //database
             else if (tgtMethod.getSignature().equals("<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>")||tgtMethod.getSignature().equals("<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>")){
-
                 Unit unit = curEdge.getSrcUnit();
                 Stmt stmt = (Stmt) unit;
                 System.out.println("database: "+stmt);
@@ -657,7 +705,7 @@ public class cganalysis {
                                 }
                                 System.out.println("tableName2: "+tableNameString2);
                                 if(tableNameString.equals(tableNameString2)){
-
+                                    
                                     SootMethod tgtMethod2 = locationvalue.getMethod();
                                     Set<Local> taintedLocals = new HashSet<Local>();
                                     List<Local> reversetaintedLocals = new ArrayList<Local>();
@@ -669,7 +717,7 @@ public class cganalysis {
                                             taintedLocals.add(local);
                                         }
                                     }
-                                    //reverseTaintedLocals
+                                    
                                     for(Local local: tgtMethodInfo.getTaintedLocals()){
                                         reversetaintedLocals.add(local);
                                     }
@@ -687,7 +735,7 @@ public class cganalysis {
              tgtMethod.getSignature().equals("<java.io.BufferedWriter: void write(java.lang.String)>") ||
              tgtMethod.getSignature().equals("<java.io.PrintWriter: void println(java.lang.String)>") ||
              tgtMethod.getSignature().equals("<java.io.Writer: void write(java.lang.String)>")){
-                Stmt tgtstmt = (Stmt) curEdge.getSrcUnit();
+                
                 System.out.println(tgtstmt);
                 Body body = srcMethod.retrieveActiveBody();
                 for(Unit unit : body.getUnits()){
@@ -730,137 +778,7 @@ public class cganalysis {
                                             taintedLocals.add(local);
                                         }
                                     }
-                                    //添加reverseTaintedLocals
-                                    for(Local local: tgtMethodInfo.getTaintedLocals()){
-                                        reversetaintedLocals.add(local);
-                                    }
-                                    FunctionTaintInfo newtgtmethodinfo = new FunctionTaintInfo(tgtMethod2,taintedLocals,reversetaintedLocals,stmt2);
-                                    MyEdge newedge = new MyEdge(tgtMethodInfo,newtgtmethodinfo,tgtstmt);
-                                    queue.add(newedge);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            //database
-            else if (tgtMethod.getSignature().equals("<android.database.sqlite.SQLiteDatabase: long insert(java.lang.String,java.lang.String,android.content.ContentValues)>")||tgtMethod.getSignature().equals("<android.database.sqlite.SQLiteDatabase: int update(java.lang.String,android.content.ContentValues,java.lang.String,java.lang.String[])>")){
-
-                Unit unit = curEdge.getSrcUnit();
-                Stmt stmt = (Stmt) unit;
-                System.out.println("database: "+stmt);
-                Boolean databaseflag = true;
-                if(stmt.containsInvokeExpr()){
-                    InvokeExpr invokeExpr = stmt.getInvokeExpr();
-                    Value tableName = invokeExpr.getArg(0);
-                    System.out.println(tableName);
-                    String tableNameString = null;
-                    if (tableName instanceof FieldRef){
-                        tableNameString = LocalVariableAnalysis.getVariableName(tableName);
-                    }
-                    else if(tableName instanceof Constant || tableName instanceof StringConstant){
-                        tableNameString = tableName.toString();
-                    }
-                    if(tableNameString == null){
-                        databaseflag = false;
-                    }
-                    System.out.println("tableName: "+tableNameString);
-                    if(databaseflag){
-                        for(locationValue locationvalue : databaseList){
-                            Stmt stmt2 = locationvalue.getStmt();
-                            if(stmt2.containsInvokeExpr()){
-                                InvokeExpr invokeExpr2 = stmt2.getInvokeExpr();
-                                Value tableName2 = invokeExpr2.getArg(0);
-                                String tableNameString2 = null;
-                                if (tableName2 instanceof FieldRef){
-                                    tableNameString2 = LocalVariableAnalysis.getVariableName(tableName2);
-                                }
-                                else if(tableName2 instanceof Constant || tableName2 instanceof StringConstant){
-                                    tableNameString2 = tableName2.toString();
-                                }
-                                if(tableNameString2 == null){
-                                    continue;
-                                }
-                                System.out.println("tableName2: "+tableNameString2);
-                                if(tableNameString.equals(tableNameString2)){
-
-                                    SootMethod tgtMethod2 = locationvalue.getMethod();
-                                    Set<Local> taintedLocals = new HashSet<Local>();
-                                    List<Local> reversetaintedLocals = new ArrayList<Local>();
-                                    if(stmt2 instanceof AssignStmt){
-                                        AssignStmt assignStmt = (AssignStmt) stmt2;
-                                        Value leftValue = assignStmt.getLeftOp();
-                                        if(leftValue instanceof Local){
-                                            Local local = (Local) leftValue;
-                                            taintedLocals.add(local);
-                                        }
-                                    }
-
-                                    for(Local local: tgtMethodInfo.getTaintedLocals()){
-                                        reversetaintedLocals.add(local);
-                                    }
-                                    FunctionTaintInfo newtgtmethodinfo = new FunctionTaintInfo(tgtMethod2,taintedLocals,reversetaintedLocals,stmt2);
-                                    MyEdge newedge = new MyEdge(tgtMethodInfo,newtgtmethodinfo,stmt);
-                                    queue.add(newedge);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-
-            else if (tgtMethod.getSignature().equals("<java.io.FileWriter: void write(java.lang.String)>") || 
-             tgtMethod.getSignature().equals("<java.io.BufferedWriter: void write(java.lang.String)>") ||
-             tgtMethod.getSignature().equals("<java.io.PrintWriter: void println(java.lang.String)>") ||
-             tgtMethod.getSignature().equals("<java.io.Writer: void write(java.lang.String)>")){
-                Stmt tgtstmt = (Stmt) curEdge.getSrcUnit();
-                System.out.println(tgtstmt);
-
-                Body body = srcMethod.retrieveActiveBody();
-                for(Unit unit : body.getUnits()){
-                    Stmt stmt = (Stmt) unit;
-                    if(stmt.containsInvokeExpr()){
-                        InvokeExpr invokeExpr = stmt.getInvokeExpr();
-                        if(invokeExpr instanceof SpecialInvokeExpr){
-
-                            SpecialInvokeExpr specialInvokeExpr = (SpecialInvokeExpr) invokeExpr;
-                            if(specialInvokeExpr.getMethod().getSignature().equals("<java.io.FileWriter: void <init>(java.lang.String)>")){
-                                Value filearg = specialInvokeExpr.getArg(0);
-                                String fileString = null;
-                                if (filearg instanceof FieldRef){
-                                    fileString = LocalVariableAnalysis.getVariableName(filearg);
-                                }
-                                else if(filearg instanceof Constant || filearg instanceof StringConstant){
-                                    fileString = filearg.toString();
-                                }
-                                if(fileString == null){
-                                    continue;
-                                }
-                                System.out.println("fileString: "+fileString);
-                                List<locationValue> filelocaltion = findfile(fileString);
-                                for(locationValue locationvalue : filelocaltion){
-                                    SootMethod tgtMethod2 = locationvalue.getMethod();
-                                    Stmt stmt2 = locationvalue.getStmt();
-                                    Set<Local> taintedLocals = new HashSet<Local>();
-                                    List<Local> reversetaintedLocals = new ArrayList<Local>();
-                                    if(stmt2 instanceof AssignStmt){
-                                        AssignStmt assignStmt = (AssignStmt) stmt2;
-                                        Value leftValue = assignStmt.getLeftOp();
-                                        if(leftValue instanceof Local){
-                                            Local local = (Local) leftValue;
-                                            taintedLocals.add(local);
-                                        }
-                                    }
-                                    if(stmt2.containsInvokeExpr()){
-                                        InvokeExpr invokeExpr2 = stmt2.getInvokeExpr();
-                                        if(invokeExpr2.getArgCount()>0){
-                                            Local local = (Local) invokeExpr2.getArg(0);
-                                            taintedLocals.add(local);
-                                        }
-                                    }
-
+                                    
                                     for(Local local: tgtMethodInfo.getTaintedLocals()){
                                         reversetaintedLocals.add(local);
                                     }
@@ -878,7 +796,16 @@ public class cganalysis {
                 queue.add(tgtEdge);
             }
         }
-       
+        for(FunctionTaintInfo key: methodMap.keySet()){
+            if(visitedmethod.contains(key)){
+                continue;
+            }
+            SootMethod keyMethod = key.getMethod();
+            System.out.println("key: "+keyMethod.getSignature());
+            infoPrint.writeToFile(cgname,"key: "+keyMethod.getSignature()+"\n");
+            visitedmethod.add(key);
+            PrintCallTree(methodMap.get(key), 1);
+        }
         actanalysis.parse(methodMap,apkname);
     }
 
@@ -918,8 +845,39 @@ public class cganalysis {
         return filelocation;
     }
 
+    //print call graph tree
+    private static void PrintCallTree(Set<FunctionTaintInfo> calledMethods, int level){
+        if(calledMethods == null){
+            return;
+        }
+        for(FunctionTaintInfo methodinfo: calledMethods){
+            SootMethod method = methodinfo.getMethod();
+            if(visitedmethod.contains(methodinfo)){
+                //System.out.println(method.getSignature());
+                continue;
+            }
+            if(GlobalValue.SinkMethods.contains(method.getSignature())||GlobalValue.SinkMethods.contains(method.getName())){
+                System.out.println("Found one sink: " + method.getSignature());
+                infoPrint.writeToFile(findingname,"Found one sink: " + method.getSignature()+"\n");
+            }
+            for(int i = 0; i < level; i++){
+                infoPrint.writeToFile(cgname,"--");
+                System.out.print("  ");
+            }
+            infoPrint.writeToFile(cgname,method.getSignature()+"\n");
+            System.out.println(method.getSignature());
+            if(methodMap.get(methodinfo) == null){
+                continue;
+            }
+            else{
+                visitedmethod.add(methodinfo);
+                PrintCallTree(methodMap.get(methodinfo), level + 1);
+            }
+        }
+    }
 
 
+    //ICC-broadcast
     private static List<String> findIntentAction(Local intentLocal,Body body){
         List<String> action = new ArrayList<String>();
         Set<Local> taintedLocals = new HashSet<Local>();
@@ -930,7 +888,6 @@ public class cganalysis {
         for(Unit unit : body.getUnits()){
             System.out.println(unit);
             Stmt stmt = (Stmt) unit;
-
             Boolean flag = false;
             if(stmt instanceof InvokeStmt){
                 InvokeStmt invokeStmt = (InvokeStmt) stmt;
@@ -943,11 +900,11 @@ public class cganalysis {
                 }
                 if(flag){
                     if(invokeStmt.getInvokeExpr().getMethod().getName().equals("setAction")){
-
+                        
                         if(invokeStmt.getInvokeExpr().getArg(0) instanceof StringConstant){
                             StringConstant stringConstant = (StringConstant) invokeStmt.getInvokeExpr().getArg(0);
                             action.add(stringConstant.value);
-
+                        
                         }else if(invokeStmt.getInvokeExpr().getArg(0) instanceof Local){
                             Local local = (Local) invokeStmt.getInvokeExpr().getArg(0);
                             Value value = local;
@@ -978,12 +935,10 @@ public class cganalysis {
                 }
             }
         }
-
         return action;
     }
 
     private static boolean isNewInstance(String jimpleStatement) {
-
         Pattern pattern = Pattern.compile("\\$[a-zA-Z0-9]+ = new ([a-zA-Z0-9\\.$]+)");
         Matcher matcher = pattern.matcher(jimpleStatement);
 
@@ -995,39 +950,34 @@ public class cganalysis {
         Pattern pattern = Pattern.compile("\\$[a-zA-Z0-9]+ = new ([a-zA-Z0-9\\.$]+)");
         Matcher matcher = pattern.matcher(unitString);
 
-
         if (matcher.find()) {
             return matcher.group(1);
         }
         return null;
     }
 
-
     private static List<String> findRecevierRegister(String action){
-
         CallGraph callGraph = GlobalValue.callgraph;
         Chain<SootClass> sootClasses = GlobalValue.sootClass;
         List<String> receiverclass = new ArrayList<String>();
         
 
-
         for(locationValue locationValue : registerReceiverStmtList){
-
             Body body = locationValue.body;
             Stmt stmt = locationValue.stmt;
             SootMethod method = locationValue.method;
-
+            
             if(stmt.containsInvokeExpr() && stmt.getInvokeExpr().getMethod().getName().equals("registerReceiver")){
-
+                
                 Value receiverValue = stmt.getInvokeExpr().getArg(0);
                 Value filterValue = stmt.getInvokeExpr().getArg(1);
-
+                
                 if(filterValue instanceof Local){
                     List<String> registeredActions = findIntentFilterAction((Local) filterValue,body,stmt);
                     for(String registeredAction : registeredActions){
-     
+                        
                         if (action.equals(registeredAction)) {
-          
+                            
                             List<Unit> defs = LocalVariableAnalysis.findDefs(body,stmt,(Local)receiverValue);
                             for(Unit unit: defs){
                                 System.out.println(unit);
@@ -1084,9 +1034,9 @@ public class cganalysis {
         return receiverclass;
     }
 
-
+    
     private static List<String> findIntentFilterAction(Local filterLocal,Body body,Stmt defstmt){
-
+        
         Local filterRef = (Local) filterLocal;
         List<String> actionList = new ArrayList<String>();
         List<Unit> defs = LocalVariableAnalysis.findUses(body,defstmt,filterRef);
@@ -1095,11 +1045,11 @@ public class cganalysis {
             Stmt stmt = (Stmt) unit;
             if (stmt.containsInvokeExpr()) {
                 InvokeExpr invokeExpr = stmt.getInvokeExpr();
-
+                
                 if (invokeExpr.getMethod().getName().equals("addAction")) {
                     Value actionArg = invokeExpr.getArg(0);
                     if (actionArg instanceof StringConstant) {
-
+                        
                         actionList.add(((StringConstant) actionArg).value);
                     }
                     else if(actionArg instanceof Local){
@@ -1116,7 +1066,7 @@ public class cganalysis {
                 else if(invokeExpr.getMethod().getSignature().equals("<android.content.IntentFilter: void <init>(java.lang.String)>")&&invokeExpr instanceof SpecialInvokeExpr){
                     Value actionArg = invokeExpr.getArg(0);
                     if (actionArg instanceof StringConstant) {
- 
+                        
                         actionList.add(((StringConstant) actionArg).value);
                     }
                     else if(actionArg instanceof Local){
@@ -1133,19 +1083,15 @@ public class cganalysis {
             }
         }
 
-
         return actionList;
     }
 
-
     private static List<sharedpreferenceinfo> findsharedpreference(Value key){
         List<sharedpreferenceinfo> sharelList = new ArrayList<sharedpreferenceinfo>();
-
         for(locationValue locationValue: sharedpreferenceStmtList){
             Body body = locationValue.body;
             Stmt stmt = locationValue.stmt;
             SootMethod method = locationValue.method;
-      
             if(stmt.containsInvokeExpr() && stmt.getInvokeExpr().getArgCount() > 0){
                 Value keyvalue = stmt.getInvokeExpr().getArg(0);
                 if(keyvalue.equals(key)){
@@ -1159,5 +1105,4 @@ public class cganalysis {
         return sharelList;
     }
     
-    //end
 }
