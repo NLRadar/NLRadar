@@ -21,7 +21,8 @@ Where:
   - `NLRadar`: Source code of NLRadar
   - `NLRadar.jar`: Executable JAR file of NLRadar
   - `android.jar`: Dependency required for the analysis
-  - `Effectiveness.html`: A refined version of the Effectiveness Assessment results
+  - `Static Analysis Assessment.xlsx`: Detailed result of Static Analysis Assessment
+  - `LLM Assessment.xlsx`: Detailed results of NLS abuse identification using LLM analysis
   - `ApkInfo`: The Package Name and SHA256 information of the test dataset
   - `NLRadar/LLM_Evaluation`: Example Prompt of LLM-based Security Evaluation
 
