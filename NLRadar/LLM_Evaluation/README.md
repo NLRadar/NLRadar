@@ -1,4 +1,12 @@
-## Prompting Questions for Assessing NLS Usage Security
+# LLM_Evaluation
+
+**Project Files**:
+
+- This folder contains the following files:
+  - gpt.py: Script for interacting with GPT
+  - *.txt: Examples with chain-of-thought reasoning
+
+### Prompting Questions for Assessing NLS Usage Security
 
 - **Inadvertent Exposure:**  Does the app unintentionally expose notification content by transmitting or storing it insecurely, thereby creating potential attack vectors? Consider:
   - Is the notification content transmitted or stored in plaintext rather than encrypted?
@@ -17,9 +25,8 @@
 
 
 
-## Chain-of-thought Reasoning Example
+### Chain-of-thought Reasoning Example
 
 - **Step 1: Expected Behavior Analysis.** From the App Description "Control phone volume for notifications," we infer that the app likely uses the NLS to to intercept notifications and adjust phone volume based on notification content. Its focus is on notification volume control rather than notification content management.
 - **Step 2: Actual Behavior Determination.** The Characterization Result reveals that the app potentially writes notification content, including text, to local files. Further analysis of the taint propagation chain and source code confirms that the app utilizes FileWriter to store all notification information in external storage. This is evidenced by the use of getExternalStorageDirectory() method. Consequently, this storage practice constitutes Inadvertent Exposure, as the app unintentionally exposes notification content by storing it in an insecure location accessible to other apps.
 - **Step 3: Behavior Comparison.** Upon comparing expected and actual behaviors, we find that the collection of all notifications primarily serves to implement the app's declared functionality, such as customizing ringtones. There is no evidence suggesting that the app specifically targets sensitive notification content for collection. Consequently, the app's behavior does not constitute Deliberate Harvesting of sensitive information.
-- **Step 4: Additional Behavioral Analysis.** The Characterization Result indicates that the app does not engage in notification dismissal or notification interaction. This confirms the absence of Unwarranted Notification Cancellation or Notification Interaction with Unsolicited Crafted Content abuse.

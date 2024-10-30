@@ -1,4 +1,14 @@
-# Market Distribution of the Regular App Dataset
+## The Package Name and SHA256 information of the test dataset
+
+**Project Files**:
+
+- This folder contains the following files:
+  - Androzoo.json: metadata from the Regular App Dataset.
+  - Malradar.json: metadata from the Regular App Dataset.
+  - Effectiveness_Assessment.json: Dataset for Static Analysis Evaluation A.
+  - Accuracy_Assessment.json: Dataset for Static Analysis Evaluation B.
+
+## Market Distribution of the Regular App Dataset
 
 ### Market Distribution of the Collected AndroZoo Apps
 
