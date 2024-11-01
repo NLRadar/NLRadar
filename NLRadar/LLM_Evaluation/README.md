@@ -2,9 +2,24 @@
 
 **Project Files**:
 
-- This folder contains the following files:
-  - gpt.py: Script for interacting with GPT
-  - *.txt: Examples with chain-of-thought reasoning
+- This directory contains the following key files:
+
+  1. gpt.py:
+
+     - Script for interacting with GPT
+
+     - Please replace `testpath` with your prompt file path and `api_key` with your own API key.
+
+  2. Example Files (.txt)
+
+     - Text files showcasing chain-of-thought reasoning examples.
+
+     - Example files include:
+       - [NLRadar/NLRadar/LLM_Evaluation/com.fab.wflixonline.txt at main · NLRadar/NLRadar](https://github.com/NLRadar/NLRadar/blob/main/NLRadar/LLM_Evaluation/com.fab.wflixonline.txt)
+       - [NLRadar/NLRadar/LLM_Evaluation/Orion.Soff.txt at main · NLRadar/NLRadar](https://github.com/NLRadar/NLRadar/blob/main/NLRadar/LLM_Evaluation/Orion.Soff.txt)
+       - [NLRadar/NLRadar/LLM_Evaluation/com.peek.all.deleted.messages.recover.txt at main · NLRadar/NLRadar](https://github.com/NLRadar/NLRadar/blob/main/NLRadar/LLM_Evaluation/com.peek.all.deleted.messages.recover.txt)
+       - [NLRadar/NLRadar/LLM_Evaluation/fun.ae.funtimes.txt at main · NLRadar/NLRadar](https://github.com/NLRadar/NLRadar/blob/main/NLRadar/LLM_Evaluation/fun.ae.funtimes.txt)
+       - [NLRadar/NLRadar/LLM_Evaluation/me.ccrama.redditslide.txt at main · NLRadar/NLRadar](https://github.com/NLRadar/NLRadar/blob/main/NLRadar/LLM_Evaluation/me.ccrama.redditslide.txt)
 
 ### Prompting Questions for Assessing NLS Usage Security
 
@@ -22,11 +37,3 @@
   - Note: Unwarranted Notification Cancellation is constituted if one of the conditions met.
 - **Notification Interaction with Unsolicited Crafted Content:** Does the app unsafely trigger notification actions (such as replying to social media messages directly via notifications) with unsolicited crafted content? Consider:
   - When interacting with the notification, does the app inject malicious content, such as links to promote scams or malware, or other unsolicited content like advertising or promotional messages?
-
-
-
-### Chain-of-thought Reasoning Example
-
-- **Step 1: Expected Behavior Analysis.** From the App Description "Control phone volume for notifications," we infer that the app likely uses the NLS to to intercept notifications and adjust phone volume based on notification content. Its focus is on notification volume control rather than notification content management.
-- **Step 2: Actual Behavior Determination.** The Characterization Result reveals that the app potentially writes notification content, including text, to local files. Further analysis of the taint propagation chain and source code confirms that the app utilizes FileWriter to store all notification information in external storage. This is evidenced by the use of getExternalStorageDirectory() method. Consequently, this storage practice constitutes Inadvertent Exposure, as the app unintentionally exposes notification content by storing it in an insecure location accessible to other apps.
-- **Step 3: Behavior Comparison.** Upon comparing expected and actual behaviors, we find that the collection of all notifications primarily serves to implement the app's declared functionality, such as customizing ringtones. There is no evidence suggesting that the app specifically targets sensitive notification content for collection. Consequently, the app's behavior does not constitute Deliberate Harvesting of sensitive information.
